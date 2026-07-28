@@ -97,12 +97,8 @@ function LabeledProductCard({
           {title}
         </h3>
         <div className="flex items-center gap-2 mt-1">
-          <span className="text-gray-400 line-through text-xs">
-            {oldPrice}
-          </span>
-          <span className="text-green-600 font-semibold text-sm">
-            {price}
-          </span>
+          <span className="text-gray-400 line-through text-xs">{oldPrice}</span>
+          <span className="text-green-600 font-semibold text-sm">{price}</span>
         </div>
         <div className="flex items-center gap-1 mt-1 text-gray-400 text-xs">
           <Star size={12} className="fill-gray-300 text-gray-300" />
@@ -136,12 +132,8 @@ function PlainProductCard({
           {title}
         </h3>
         <div className="flex items-center gap-2 mt-1">
-          <span className="text-gray-400 line-through text-xs">
-            {oldPrice}
-          </span>
-          <span className="text-green-600 font-semibold text-sm">
-            {price}
-          </span>
+          <span className="text-gray-400 line-through text-xs">{oldPrice}</span>
+          <span className="text-green-600 font-semibold text-sm">{price}</span>
         </div>
         <div className="flex items-center gap-1 mt-1 text-gray-400 text-xs">
           <Star size={12} className="fill-gray-300 text-gray-300" />
@@ -202,9 +194,7 @@ export default function DealOfTheWeek() {
             </div>
           </div>
 
-          <h3 className="text-lg font-bold text-gray-900">
-            Shahi Gram Masala
-          </h3>
+          <h3 className="text-lg font-bold text-gray-900">Shahi Gram Masala</h3>
           <div className="flex items-center gap-2 mt-1">
             <span className="text-green-600 font-bold text-lg">₹124.00</span>
             <span className="bg-red-50 text-red-500 text-xs font-medium px-2 py-0.5 rounded">
