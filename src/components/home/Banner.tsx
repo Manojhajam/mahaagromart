@@ -2,22 +2,55 @@ import Image from "next/image";
 
 export default function Banner() {
   return (
-    <div>
-  <div className="h-[32.5rem] w-[30rem] rounded-2xl overflow-hidden relative">
-    <div
-      className="absolute inset-0 bg-contain bg-center bg-green-700 bg-no-repeat transition-transform duration-300 hover:scale-110"
-      style={{
-        backgroundImage: "url('/images/hero.webp')",
-      }}
-    />
+    <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:gap-6 lg:gap-8">
+      <div className="h-[32.5rem] w-[30rem] rounded-2xl overflow-hidden relative group">
+        <div
+          className="absolute inset-0 bg-contain bg-center bg-green-700 bg-no-repeat transition-transform duration-300 group-hover:scale-110"
+          style={{
+            backgroundImage: "url('/images/hero.webp')",
+            backgroundSize: "140%",
+          }}
+        />
 
-    <div className="relative z-10 pb-10 flex flex-col items-center justify-end h-full">
-      <h1 className="text-white text-2xl">
-        Get Up to <span className="text-yellow-300">50%*</span> Off
-      </h1>
+        <div className="relative z-10 pb-10 flex flex-col items-center justify-end h-full">
+          <h1 className="text-white text-2xl">
+            Get Up to <span className="text-yellow-300">50%*</span> Off
+          </h1>
+        </div>
+      </div>
+
+      <div className="h-[32.5rem] w-[30rem] rounded-2xl overflow-hidden relative group">
+        <div
+          className="absolute inset-0 bg-contain bg-center bg-green-700 bg-no-repeat transition-transform duration-300 group-hover:scale-110"
+          style={{
+            backgroundImage: "url('/images/hero.webp')",
+            backgroundSize: "140%",
+          }}
+        />
+
+        <div className="relative z-10 pb-10 flex flex-col items-center justify-end h-full">
+          <h1 className="text-white text-2xl">
+            Get Up to <span className="text-yellow-300">50%*</span> Off
+          </h1>
+        </div>
+      </div>
+
+      <div className="h-[32.5rem] w-[30rem] rounded-2xl overflow-hidden relative group">
+        <div
+          className="absolute inset-0 bg-contain bg-center bg-green-700 bg-no-repeat transition-transform duration-300 group-hover:scale-110"
+          style={{
+            backgroundImage: "url('/images/hero.webp')",
+            backgroundSize: "140%",
+          }}
+        />
+
+        <div className="relative z-10 pb-10 flex flex-col items-center justify-end h-full">
+          <h1 className="text-white text-2xl">
+            Get Up to <span className="text-yellow-300">50%*</span> Off
+          </h1>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
   );
 }
 
