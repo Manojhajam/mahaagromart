@@ -2,6 +2,7 @@
 
 import Banner, { Categories } from "./Banner";
 import DealOfTheWeek from "./DealoftheWeek";
+import FruitProduct from "./FruitProduct";
 
 const Home = () => {
   return (
@@ -9,6 +10,7 @@ const Home = () => {
       <Banner />
       <Categories />
       <DealOfTheWeek />
+      <FruitProduct />
     </div>
   );
 };
