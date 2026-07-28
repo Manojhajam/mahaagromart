@@ -164,7 +164,7 @@ export default function DealOfTheWeek() {
       </div>
 
       {/* Body */}
-      <div className="bg-[#E9F5E9] p-4 sm:p-6 grid grid-cols-12 gap-5">
+      <div className="bg-[#E9F5E9] p-4 sm:p-6 grid grid-cols-12 gap-5 items-stretch">
         {/* Left: hero image */}
         <div className="col-span-12 md:col-span-12 xl:col-span-3 relative rounded-2xl overflow-hidden bg-gradient-to-br from-emerald-100 to-emerald-200 min-h-[200px] sm:min-h-[280px] md:min-h-[360px] flex items-end justify-center">
           {/* Replace this block with: <img src="/images/woman.webp" className="absolute inset-0 w-full h-full object-cover" /> */}
@@ -174,7 +174,7 @@ export default function DealOfTheWeek() {
         </div>
 
         {/* Middle: featured product */}
-        <div className="col-span-12 md:col-span-12 xl:col-span-3 bg-white rounded-2xl shadow-sm p-5 flex flex-col relative">
+        <div className="col-span-12 md:col-span-12 xl:col-span-3 bg-white rounded-2xl shadow-sm p-5 flex flex-col relative min-h-[200px] sm:min-h-[280px] md:min-h-[360px]">
           <div className="flex items-start justify-between">
             <span className="bg-gray-100 text-gray-600 text-xs font-medium px-3 py-1 rounded-md">
               Food
@@ -208,7 +208,7 @@ export default function DealOfTheWeek() {
         </div>
 
         {/* Right: product grid */}
-        <div className="col-span-12 md:col-span-12 xl:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4 auto-rows-min">
+        <div className="col-span-12 md:col-span-12 xl:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4 auto-rows-fr h-full">
           {labeledProducts.map((p, i) => (
             <Fragment key={p.title}>
               <LabeledProductCard {...p} />
