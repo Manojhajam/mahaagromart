@@ -22,7 +22,7 @@ const Navbar = () => {
   return (
     <div>
       <div className="bg-green-900">
-        <div className="flex justify-between items-center max-w-[1480px] px-4 py-3 mx-auto ">
+        <div className="container flex justify-between items-center py-3">
           <div>
             <EnvironmentFilled style={{ fontSize: 16, color: "white" }} />
             <span className=" text-base text-white ml-2">Location</span>
@@ -52,7 +52,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      <div className="max-w-[1480px] mx-auto px-2">
+      <div className="container">
         <Image
           src="/logo.webp"
           alt="MahaAgroMart Logo"
@@ -62,7 +62,7 @@ const Navbar = () => {
       </div>
 
       <nav className="w-full">
-        <div className="max-w-[1480px] mx-auto flex items-center justify-between h-16 px-2 border-2 border-gray-400 rounded-md mt-2 bg-gray-100">
+        <div className="container flex items-center justify-between h-16 border-2 border-gray-400 rounded-md mt-2 bg-gray-100">
           <ul className="flex items-center gap-8 ml-4">
             {navItems.map((item) => (
               <li key={item.href}>

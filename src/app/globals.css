@@ -13,3 +13,7 @@
 .animate-marquee {
   animation: marquee 10s linear infinite;
 }
+
+.container {
+  @apply w-full mx-auto px-4 sm:px-6 lg:px-8 max-w-[320px] sm:max-w-[640px] md:max-w-[768px] lg:max-w-[1024px] xl:max-w-[1280px] 2xl:max-w-[1480px];
+}

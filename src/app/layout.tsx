@@ -32,7 +32,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <Navbar />
         <NoticeBar />
-        <main className="w-full max-w-[1480px] mx-auto flex-1">{children}</main>
+        <main className="container flex-1">{children}</main>
       </body>
     </html>
   );
