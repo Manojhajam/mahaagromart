@@ -1,10 +1,13 @@
+"use client";
+
 import Image from "next/image";
+import { Button } from "antd";
 
 export default function Banner() {
   return (
     <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 sm:gap-6 lg:gap-8">
       {[1, 2, 3].map((i) => (
-        <div key={i} className="h-64 sm:h-80 lg:h-[32.5rem] w-full rounded-2xl overflow-hidden relative group">
+        <div key={i} className="h-64 sm:h-80 lg:h-[28.5rem] w-full rounded-2xl overflow-hidden relative group">
           <div
             className="absolute inset-0 bg-contain bg-center bg-green-700 bg-no-repeat transition-transform duration-300 group-hover:scale-110"
             style={{
@@ -16,6 +19,9 @@ export default function Banner() {
             <h1 className="text-white text-2xl">
               Get Up to <span className="text-yellow-300">50%*</span> Off
             </h1>
+            <div>
+                <Button size="large" type="primary" className="!bg-black !border-black hover:!bg-gray-800 hover:!border-gray-800 font-bold mt-2 !px-10 !py-6">Shop Now</Button>
+            </div>
           </div>
         </div>
       ))}
@@ -25,7 +31,7 @@ export default function Banner() {
 
 export function Categories() {
   return (
-    <section className="py-10">
+    <section className="py-8">
       <div className="container">
         <h2 className="mb-6 text-2xl font-bold text-gray-800">
           Top Categories
