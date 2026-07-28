@@ -218,7 +218,7 @@ export default function DealOfTheWeek() {
         </div>
 
         {/* Right: product grid */}
-        <div className="col-span-12 md:col-span-12 grid grid-cols-1 sm:grid-cols-2 gap-4 auto-rows-min">
+        <div className="col-span-12 md:col-span-12 xl:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4 auto-rows-min">
           {labeledProducts.map((p, i) => (
             <Fragment key={p.title}>
               <LabeledProductCard {...p} />
