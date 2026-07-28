@@ -158,9 +158,9 @@ function PlainProductCard({
 
 export default function DealOfTheWeek() {
   return (
-    <div className="max-w-6xl mx-auto rounded-3xl border-2 border-red-500 overflow-hidden bg-white">
+    <div className="container rounded-3xl border-2 border-red-500 overflow-hidden bg-white">
       {/* Header */}
-      <div className="bg-[#FBF6EA] px-8 py-5 flex items-center justify-between flex-wrap gap-4">
+      <div className="bg-[#FBF6EA] px-4 sm:px-6 py-5 flex items-center justify-between flex-wrap gap-4">
         <h2 className="text-2xl font-extrabold text-gray-900">
           Deal of the Week
         </h2>
@@ -172,9 +172,9 @@ export default function DealOfTheWeek() {
       </div>
 
       {/* Body */}
-      <div className="bg-[#E9F5E9] p-6 grid grid-cols-12 gap-5">
+      <div className="bg-[#E9F5E9] p-4 sm:p-6 grid grid-cols-12 gap-5">
         {/* Left: hero image */}
-        <div className="col-span-12 md:col-span-3 relative rounded-2xl overflow-hidden bg-gradient-to-br from-emerald-100 to-emerald-200 min-h-[360px] flex items-end justify-center">
+        <div className="col-span-12 md:col-span-3 relative rounded-2xl overflow-hidden bg-gradient-to-br from-emerald-100 to-emerald-200 min-h-[200px] sm:min-h-[280px] md:min-h-[360px] flex items-end justify-center">
           {/* Replace this block with: <img src="/images/woman.webp" className="absolute inset-0 w-full h-full object-cover" /> */}
           <div className="absolute inset-0 flex items-center justify-center text-8xl">
             🧺
