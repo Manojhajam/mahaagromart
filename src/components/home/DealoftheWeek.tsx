@@ -158,9 +158,9 @@ function PlainProductCard({
 
 export default function DealOfTheWeek() {
   return (
-    <div className="container rounded-3xl border-2 border-red-500 overflow-hidden bg-white">
+    <div className="container rounded-xl border-4 border-red-500 overflow-hidden bg-white mb-10">
       {/* Header */}
-      <div className="bg-[#FBF6EA] px-4 sm:px-6 py-5 flex items-center justify-between flex-wrap gap-4">
+      <div className="bg-[#FBF6EA] px-4 py-5 flex items-center justify-between flex-wrap gap-4">
         <h2 className="text-2xl font-extrabold text-gray-900">
           Deal of the Week
         </h2>
