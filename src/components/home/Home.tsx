@@ -1,13 +1,12 @@
 "use client";
 
-import Banner from "./Banner";
+import Banner, { Categories } from "./Banner";
 
 const Home = () => {
   return (
     <div>
-      <div>
-        <Banner />
-      </div>
+      <Banner />
+      <Categories />
     </div>
   );
 };
