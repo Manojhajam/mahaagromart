@@ -4,6 +4,7 @@ import {
   EnvironmentFilled,
   FacebookFilled,
   InstagramFilled,
+  MailOutlined,
 } from "@ant-design/icons";
 import Link from "next/link";
 import React from "react";
@@ -16,6 +17,8 @@ const Home = () => {
           <div>
             <EnvironmentFilled style={{ fontSize: 16, color: "white" }} />
             <span className=" text-base text-white ml-2">Location</span>
+            <MailOutlined style={{ fontSize: 16, color: "white", marginLeft: 20 }} />
+            <span className=" text-base text-white ml-2">info@mahaagromart.com</span>
           </div>
           <div className="flex gap-4">
             <a
