@@ -23,14 +23,35 @@ const navItems = [
   { label: "Services", href: "/services" },
 ];
 
+const categoryList = [
+  { name: "Fruits & Vegetables", icon: "🍎" },
+  { name: "Food Products", icon: "🥫" },
+  { name: "Millets", icon: "🌾" },
+  { name: "Fertilizers", icon: "🧪" },
+  { name: "Pesticides", icon: "🧴" },
+  { name: "Seeds", icon: "🌱" },
+  { name: "Combo Packs", icon: "📦" },
+  { name: "Gardening", icon: "🧑‍🌾" },
+  { name: "Dairy & Eggs", icon: "🥛" },
+  { name: "Oils", icon: "🫒" },
+  { name: "Dry Fruits", icon: "🥜" },
+  { name: "Grains & Rice", icon: "🌾" },
+  { name: "Animal Feed", icon: "🐄" },
+  { name: "Agro Engineering", icon: "🔧" },
+  { name: "Noga", icon: "🌿" },
+];
+
 const Navbar = () => {
   const pathname = usePathname();
   const router = useRouter();
   const [searchText, setSearchText] = useState("");
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  const handleSearch = () => {
-    if (searchText.trim()) {
-      router.push(`/search?q=${encodeURIComponent(searchText.trim())}`);
+  const handleSearch = (query?: string) => {
+    const q = query || searchText.trim();
+    if (q) {
+      router.push(`/search?q=${encodeURIComponent(q)}`);
+      setDropdownOpen(false);
     }
   };
 
@@ -77,14 +98,33 @@ const Navbar = () => {
           />
         </div>
         {/* Category dropdown */}
-        <button
-          type="button"
-          className="flex items-center gap-2 rounded-full border border-gray-200 bg-white px-5 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50"
-        >
-          <FilterOutlined />
-          <span>All Categories</span>
-          <DownOutlined className="text-xs" />
-        </button>
+        <div className="relative">
+          <button
+            type="button"
+            onClick={() => setDropdownOpen(!dropdownOpen)}
+            onBlur={() => setTimeout(() => setDropdownOpen(false), 200)}
+            className="flex items-center gap-2 rounded-full border border-gray-200 bg-white px-5 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50"
+          >
+            <FilterOutlined />
+            <span>All Categories</span>
+            <DownOutlined className="text-xs" />
+          </button>
+          {dropdownOpen && (
+            <div className="absolute top-full mt-2 left-0 w-64 bg-white border border-gray-200 rounded-xl shadow-lg z-50 max-h-80 overflow-y-auto">
+              {categoryList.map((cat) => (
+                <button
+                  key={cat.name}
+                  type="button"
+                  onClick={() => handleSearch(cat.name)}
+                  className="flex items-center gap-3 w-full px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-green-700 transition-colors"
+                >
+                  <span className="text-lg">{cat.icon}</span>
+                  <span>{cat.name}</span>
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
 
         {/* Search bar */}
         <div className="flex flex-1 max-w-2xl items-center overflow-hidden rounded-full border border-gray-200">
