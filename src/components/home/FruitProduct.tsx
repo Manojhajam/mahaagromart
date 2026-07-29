@@ -74,7 +74,7 @@ function FruitProductCard({
   discount,
 }: (typeof fruitProducts)[number]) {
   return (
-    <div className="bg-white rounded-2xl shadow-sm p-3 sm:p-5 flex flex-col relative min-h-[280px] sm:min-h-[320px] lg:min-h-[360px]">
+    <div className="bg-white rounded-2xl shadow-sm border border-gray-300 p-3 sm:p-5 flex flex-col relative min-h-[280px] sm:min-h-[320px] lg:min-h-[360px]">
       <div className="flex items-start justify-between">
         <span className="bg-gray-100 text-gray-600 text-[10px] sm:text-xs font-medium px-2 sm:px-3 py-1 rounded-md">
           {category}
@@ -113,7 +113,7 @@ function FruitProductCard({
 
 export default function FruitProduct() {
   return (
-    <section className="container py-10">
+    <section className="py-10">
       <h2 className="text-2xl font-bold text-gray-900 mb-6">Fruit Products</h2>
       <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide -mx-4 px-4 pb-2">
         {fruitProducts.map((p) => (
