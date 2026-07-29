@@ -5,7 +5,7 @@ const fruitProducts = [
     title: "Fresh Apple",
     price: "₹120.00",
     oldPrice: "₹150.00",
-    emoji: "🍎",
+    image: "https://images.unsplash.com/photo-1619546813926-a78fa6372cd2?w=400&h=400&fit=crop",
     color: "bg-red-50",
     category: "Fruit",
     label: "FRESH APPLE",
@@ -15,7 +15,7 @@ const fruitProducts = [
     title: "Ripe Banana",
     price: "₹40.00",
     oldPrice: "₹50.00",
-    emoji: "🍌",
+    image: "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400&h=400&fit=crop",
     color: "bg-yellow-50",
     category: "Fruit",
     label: "RIPE BANANA",
@@ -25,7 +25,7 @@ const fruitProducts = [
     title: "Juicy Orange",
     price: "₹80.00",
     oldPrice: "₹100.00",
-    emoji: "🍊",
+    image: "https://images.unsplash.com/photo-1547514701-42782101795e?w=400&h=400&fit=crop",
     color: "bg-orange-50",
     category: "Fruit",
     label: "JUICY ORANGE",
@@ -35,7 +35,7 @@ const fruitProducts = [
     title: "Sweet Mango",
     price: "₹90.00",
     oldPrice: "₹120.00",
-    emoji: "🥭",
+    image: "https://images.unsplash.com/photo-1553279768-865429fa0078?w=400&h=400&fit=crop",
     color: "bg-yellow-50",
     category: "Fruit",
     label: "SWEET MANGO",
@@ -45,7 +45,7 @@ const fruitProducts = [
     title: "Fresh Grapes",
     price: "₹150.00",
     oldPrice: "₹180.00",
-    emoji: "🍇",
+    image: "https://images.unsplash.com/photo-1596363505723-1942b9356e86?w=400&h=400&fit=crop",
     color: "bg-purple-50",
     category: "Fruit",
     label: "FRESH GRAPES",
@@ -55,7 +55,7 @@ const fruitProducts = [
     title: "Green Kiwi",
     price: "₹200.00",
     oldPrice: "₹250.00",
-    emoji: "🥝",
+    image: "https://images.unsplash.com/photo-1614961230310-e4b24f88e89b?w=400&h=400&fit=crop",
     color: "bg-green-50",
     category: "Fruit",
     label: "GREEN KIWI",
@@ -67,7 +67,7 @@ function FruitProductCard({
   title,
   price,
   oldPrice,
-  emoji,
+  image,
   color,
   category,
   label,
@@ -85,9 +85,13 @@ function FruitProductCard({
 
       <div className="flex-1 flex items-center gap-2 sm:gap-3 my-3 sm:my-4">
         <div
-          className={`flex-1 aspect-square ${color} rounded-xl flex items-center justify-center text-4xl sm:text-6xl`}
+          className={`flex-1 aspect-square ${color} rounded-xl overflow-hidden`}
         >
-          {emoji}
+          <img
+            src={image}
+            alt={title}
+            className="w-full h-full object-cover"
+          />
         </div>
       </div>
 
