@@ -36,11 +36,17 @@ export default function ProductShowcase() {
       <ProductRow title="Fruit Products" items={fruitProducts} />
       <SomeMore images={["/img/1.png", "/img/2.png", "/img/3.png"]} />
       <ProductRow title="Food Products" items={foodProducts} />
+      <SomeMore images={["/img/1.png", "/img/2.png", "/img/3.png"]} />
       <ProductRow title="Pesticides" items={pesticideProducts} />
+      <SomeMore images={["/img/1.png", "/img/2.png", "/img/3.png"]} />
       <ProductRow title="Gardening" items={gardeningProducts} />
+      <SomeMore images={["/img/1.png", "/img/2.png", "/img/3.png"]} />
       <ProductRow title="On Sale" items={onSaleProducts} />
+      <SomeMore images={["/img/1.png", "/img/2.png", "/img/3.png"]} />
       <ProductRow title="Noga Brand" items={nogaProducts} />
+      <SomeMore images={["/img/1.png", "/img/2.png", "/img/3.png"]} />
       <ProductRow title="Animal Feed" items={animalFeedProducts} />
+      <SomeMore images={["/img/1.png", "/img/2.png", "/img/3.png"]} />
       <ProductRow title="Agro Engineering" items={agroEngineeringProducts} />
     </div>
   );
