@@ -16,6 +16,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
+import { useCart } from "@/context/CartContext";
+import CartDrawer from "@/components/CartDrawer";
 
 const navItems = [
   { label: "Home", href: "/" },
@@ -46,6 +48,8 @@ const Navbar = () => {
   const router = useRouter();
   const [searchText, setSearchText] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
+  const { totalItems } = useCart();
 
   const handleSearch = (query?: string) => {
     const q = query || searchText.trim();
@@ -159,11 +163,22 @@ const Navbar = () => {
           <button type="button" aria-label="Wishlist" className="text-lg">
             <HeartOutlined />
           </button>
-          <button type="button" aria-label="Cart" className="text-lg">
+          <button
+            type="button"
+            aria-label="Cart"
+            className="relative text-lg"
+            onClick={() => setCartOpen(true)}
+          >
             <ShoppingCartOutlined />
+            {totalItems > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                {totalItems > 9 ? "9+" : totalItems}
+              </span>
+            )}
           </button>
         </div>
       </div>
+      <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
 
       <nav className="w-full">
         <div className="container flex items-center justify-between h-16 border-2 border-gray-400 rounded-md mt-2 bg-gray-100">
