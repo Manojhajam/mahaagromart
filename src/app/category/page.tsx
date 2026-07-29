@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams, useRouter } from "next/navigation";
-import { useState, useMemo } from "react";
+import { Suspense, useState, useMemo, useEffect } from "react";
 import products, { categories } from "@/data/products";
 import ProductCard from "@/components/home/ProductCard";
 import { DownOutlined } from "@ant-design/icons";
@@ -134,13 +134,15 @@ function FilterSidebar({
   );
 }
 
-export default function CategoryPage() {
+function CategoryPageContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const [selectedCat, setSelectedCat] = useState<string | null>(() => {
-    return searchParams.get("cat") || null;
-  });
+  const [selectedCat, setSelectedCat] = useState<string | null>(null);
+
+  useEffect(() => {
+    setSelectedCat(searchParams.get("cat") || null);
+  }, [searchParams]);
   const [priceRange, setPriceRange] = useState<{
     min: number;
     max: number;
@@ -344,5 +346,13 @@ export default function CategoryPage() {
         </div>
       </section>
     </div>
+  );
+}
+
+export default function CategoryPage() {
+  return (
+    <Suspense fallback={<div className="text-center py-20 text-gray-400">Loading...</div>}>
+      <CategoryPageContent />
+    </Suspense>
   );
 }
