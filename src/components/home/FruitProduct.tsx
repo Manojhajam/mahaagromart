@@ -81,9 +81,9 @@ function FruitProductCard({
   discount,
 }: (typeof fruitProducts)[number]) {
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-gray-300 p-3 sm:p-5 flex flex-col relative min-h-[260px] sm:min-h-[300px] lg:min-h-[340px]">
+    <div className="bg-white rounded-2xl shadow-sm border border-gray-300 p-3 sm:p-5 flex flex-col relative h-full transition-transform duration-300 ease-in-out hover:scale-105">
       <div className="flex items-start justify-between">
-        <span className="bg-gray-100 text-gray-600 text-[10px] sm:text-xs font-medium px-2 sm:px-3 py-1 rounded-md">
+        <span className="bg-gray-200 text-gray-600 text-[10px] sm:text-xs font-medium px-2 sm:px-3 py-1 rounded-md">
           {category}
         </span>
         <Heart size={16} className="text-red-400 fill-red-400 sm:hidden" />
@@ -138,7 +138,7 @@ export default function FruitProduct() {
         {fruitProducts.map((p) => (
           <div
             key={p.title}
-            className="w-[calc(50%-8px)] sm:w-[calc(33.333%-11px)] md:w-[calc(25%-12px)] lg:w-[calc(20%-13px)] snap-start shrink-0"
+            className="w-[calc(50%-8px)] sm:w-[calc(33.333%-11px)] md:w-[calc(25%-12px)] lg:w-[calc(20%-13px)] h-[360px] sm:h-[400px] lg:h-[440px] snap-start shrink-0"
           >
             <FruitProductCard {...p} />
           </div>
