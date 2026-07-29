@@ -4,6 +4,12 @@ import {
   FacebookFilled,
   InstagramFilled,
   MailOutlined,
+  SearchOutlined,
+  UserOutlined,
+  HeartOutlined,
+  ShoppingCartOutlined,
+  DownOutlined,
+  FilterOutlined,
 } from "@ant-design/icons";
 import Image from "next/image";
 
@@ -52,13 +58,53 @@ const Navbar = () => {
         </div>
       </div>
 
-      <div className="container">
-        <Image
-          src="/logo.webp"
-          alt="MahaAgroMart Logo"
-          width={120}
-          height={60}
-        />
+      <div className="container mx-auto flex items-center justify-between gap-6 px-4 py-4">
+        <div>
+          <Image
+            src="/logo.webp"
+            alt="MahaAgroMart Logo"
+            width={120}
+            height={60}
+          />
+        </div>
+        {/* Category dropdown */}
+        <button
+          type="button"
+          className="flex items-center gap-2 rounded-full border border-gray-200 bg-white px-5 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50"
+        >
+          <FilterOutlined />
+          <span>All Categories</span>
+          <DownOutlined className="text-xs" />
+        </button>
+
+        {/* Search bar */}
+        <div className="flex flex-1 max-w-2xl items-center overflow-hidden rounded-full border border-gray-200">
+          <input
+            type="text"
+            placeholder="Search ...."
+            className="flex-1 bg-white px-5 py-3 text-sm text-gray-700 placeholder-gray-400 outline-none"
+          />
+          <button
+            type="button"
+            className="flex items-center gap-2 bg-yellow-400 px-6 py-3 text-sm font-bold text-black hover:bg-yellow-500"
+          >
+            SEARCH
+            <SearchOutlined />
+          </button>
+        </div>
+
+        {/* Icons */}
+        <div className="flex items-center gap-5 text-gray-800">
+          <button type="button" aria-label="Account" className="text-lg">
+            <UserOutlined />
+          </button>
+          <button type="button" aria-label="Wishlist" className="text-lg">
+            <HeartOutlined />
+          </button>
+          <button type="button" aria-label="Cart" className="text-lg">
+            <ShoppingCartOutlined />
+          </button>
+        </div>
       </div>
 
       <nav className="w-full">
