@@ -14,7 +14,8 @@ import {
 import Image from "next/image";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useState } from "react";
 
 const navItems = [
   { label: "Home", href: "/" },
@@ -24,6 +25,14 @@ const navItems = [
 
 const Navbar = () => {
   const pathname = usePathname();
+  const router = useRouter();
+  const [searchText, setSearchText] = useState("");
+
+  const handleSearch = () => {
+    if (searchText.trim()) {
+      router.push(`/search?q=${encodeURIComponent(searchText.trim())}`);
+    }
+  };
 
   return (
     <div>
@@ -82,10 +91,14 @@ const Navbar = () => {
           <input
             type="text"
             placeholder="Search ...."
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && handleSearch()}
             className="flex-1 bg-white px-5 py-3 text-sm text-gray-700 placeholder-gray-400 outline-none"
           />
           <button
             type="button"
+            onClick={handleSearch}
             className="flex items-center gap-2 bg-yellow-400 px-6 py-3 text-sm font-bold text-black hover:bg-yellow-500"
           >
             SEARCH
