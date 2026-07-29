@@ -115,9 +115,11 @@ export default function FruitProduct() {
   return (
     <section className="container py-10">
       <h2 className="text-2xl font-bold text-gray-900 mb-6">Fruit Products</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide -mx-4 px-4 pb-2">
         {fruitProducts.map((p) => (
-          <FruitProductCard key={p.title} {...p} />
+          <div key={p.title} className="min-w-[calc(50%-8px)] sm:min-w-[calc(33.333%-11px)] md:min-w-[calc(25%-12px)] lg:min-w-[calc(20%-13px)] snap-start shrink-0">
+            <FruitProductCard {...p} />
+          </div>
         ))}
       </div>
     </section>
