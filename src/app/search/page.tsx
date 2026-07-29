@@ -1,10 +1,11 @@
 "use client";
 
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import products from "@/data/products";
 import ProductCard from "@/components/home/ProductCard";
 
-export default function SearchPage() {
+function SearchPageContent() {
   const searchParams = useSearchParams();
   const query = searchParams.get("q") || "";
 
@@ -48,5 +49,13 @@ export default function SearchPage() {
         </div>
       )}
     </section>
+  );
+}
+
+export default function SearchPage() {
+  return (
+    <Suspense fallback={<div className="text-center py-20 text-gray-400">Searching...</div>}>
+      <SearchPageContent />
+    </Suspense>
   );
 }

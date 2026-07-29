@@ -163,14 +163,11 @@ function CategoryPageContent() {
   }, [selectedCat, priceRange, minRating]);
 
   const clearFilters = () => {
-    setSelectedCat(null);
     setPriceRange(null);
     setMinRating(0);
-    router.replace("/category", { scroll: false });
   };
 
-  const hasActiveFilters =
-    selectedCat !== null || priceRange !== null || minRating > 0;
+  const hasActiveFilters = priceRange !== null || minRating > 0;
 
   return (
     <div>
@@ -278,18 +275,7 @@ function CategoryPageContent() {
             {/* Active filter chips */}
             {hasActiveFilters && (
               <div className="flex flex-wrap gap-2 mb-4">
-                {selectedCat && (
-                  <span className="inline-flex items-center gap-1 bg-green-50 text-green-700 text-xs font-medium px-2.5 py-1 rounded-full">
-                    {selectedCat}
-                    <button
-                      onClick={() => setSelectedCat(null)}
-                      className="ml-1 hover:text-green-900"
-                    >
-                      &times;
-                    </button>
-                  </span>
-                )}
-                {priceRange && (
+                    {priceRange && (
                   <span className="inline-flex items-center gap-1 bg-green-50 text-green-700 text-xs font-medium px-2.5 py-1 rounded-full">
                     {priceRange.max === Infinity
                       ? `₹${priceRange.min}+`
