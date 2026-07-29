@@ -34,6 +34,7 @@ function SearchPageContent() {
           {filtered.map((p) => (
             <div key={p.id} className="h-[360px] sm:h-[400px] lg:h-[440px]">
               <ProductCard
+                id={p.id}
                 title={p.title}
                 price={p.price}
                 oldPrice={p.oldPrice}

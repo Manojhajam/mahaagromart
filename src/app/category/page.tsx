@@ -314,6 +314,7 @@ function CategoryPageContent() {
                     className="h-[340px] sm:h-[380px] lg:h-[420px]"
                   >
                     <ProductCard
+                      id={p.id}
                       title={p.title}
                       price={p.price}
                       oldPrice={p.oldPrice}

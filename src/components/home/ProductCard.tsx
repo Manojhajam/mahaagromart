@@ -1,7 +1,11 @@
+"use client";
+
+import { useRouter } from "next/navigation";
 import { Image } from "antd";
 import { Heart, Star } from "lucide-react";
 
 interface ProductCardProps {
+  id: number;
   title: string;
   price: string;
   oldPrice: string;
@@ -15,6 +19,7 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({
+  id,
   title,
   price,
   oldPrice,
@@ -26,8 +31,13 @@ export default function ProductCard({
   rating,
   reviews,
 }: ProductCardProps) {
+  const router = useRouter();
+
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-gray-300 p-3 sm:p-5 flex flex-col relative h-full transition-transform duration-300 ease-in-out hover:scale-105">
+    <div
+      onClick={() => router.push(`/product/${id}`)}
+      className="bg-white rounded-2xl shadow-sm border border-gray-300 p-3 sm:p-5 flex flex-col relative h-full transition-transform duration-300 ease-in-out hover:scale-105 cursor-pointer"
+    >
       {category && (
         <div className="flex items-start justify-between">
           <span className="bg-gray-200 text-gray-600 text-[10px] sm:text-xs font-medium px-2 sm:px-3 py-1 rounded-md">

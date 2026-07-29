@@ -1,4 +1,5 @@
 export interface HomeProduct {
+  id: number;
   title: string;
   price: string;
   oldPrice: string;
@@ -11,6 +12,7 @@ export interface HomeProduct {
 
 export const fruitProducts: HomeProduct[] = [
   {
+    id: 101,
     title: "Fresh Apple",
     price: "₹120.00",
     oldPrice: "₹150.00",
@@ -21,6 +23,7 @@ export const fruitProducts: HomeProduct[] = [
     discount: "20% OFF",
   },
   {
+    id: 102,
     title: "Ripe Banana",
     price: "₹40.00",
     oldPrice: "₹50.00",
@@ -31,6 +34,7 @@ export const fruitProducts: HomeProduct[] = [
     discount: "20% OFF",
   },
   {
+    id: 103,
     title: "Juicy Orange",
     price: "₹80.00",
     oldPrice: "₹100.00",
@@ -41,6 +45,7 @@ export const fruitProducts: HomeProduct[] = [
     discount: "20% OFF",
   },
   {
+    id: 104,
     title: "Sweet Mango",
     price: "₹90.00",
     oldPrice: "₹120.00",
@@ -51,6 +56,7 @@ export const fruitProducts: HomeProduct[] = [
     discount: "25% OFF",
   },
   {
+    id: 105,
     title: "Fresh Grapes",
     price: "₹150.00",
     oldPrice: "₹180.00",
@@ -61,6 +67,7 @@ export const fruitProducts: HomeProduct[] = [
     discount: "17% OFF",
   },
   {
+    id: 106,
     title: "Green Kiwi",
     price: "₹200.00",
     oldPrice: "₹250.00",
@@ -74,6 +81,7 @@ export const fruitProducts: HomeProduct[] = [
 
 export const foodProducts: HomeProduct[] = [
   {
+    id: 107,
     title: "Kala Tikha Masala",
     price: "₹85.00",
     oldPrice: "₹100.00",
@@ -84,6 +92,7 @@ export const foodProducts: HomeProduct[] = [
     discount: "15% OFF",
   },
   {
+    id: 108,
     title: "Kanda Lasun Masala",
     price: "₹85.00",
     oldPrice: "₹90.00",
@@ -94,6 +103,7 @@ export const foodProducts: HomeProduct[] = [
     discount: "6% OFF",
   },
   {
+    id: 109,
     title: "Chilly Powder",
     price: "₹1699.00",
     oldPrice: "₹1700.00",
@@ -104,6 +114,7 @@ export const foodProducts: HomeProduct[] = [
     discount: "1% OFF",
   },
   {
+    id: 110,
     title: "Turmeric Powder",
     price: "₹15.00",
     oldPrice: "₹18.00",
@@ -114,6 +125,7 @@ export const foodProducts: HomeProduct[] = [
     discount: "17% OFF",
   },
   {
+    id: 111,
     title: "Coriander Powder",
     price: "₹25.00",
     oldPrice: "₹30.00",
@@ -124,6 +136,7 @@ export const foodProducts: HomeProduct[] = [
     discount: "17% OFF",
   },
   {
+    id: 112,
     title: "Cumin Seeds",
     price: "₹45.00",
     oldPrice: "₹55.00",
@@ -137,6 +150,7 @@ export const foodProducts: HomeProduct[] = [
 
 export const pesticideProducts: HomeProduct[] = [
   {
+    id: 113,
     title: "Neem Oil Spray",
     price: "₹199.00",
     oldPrice: "₹249.00",
@@ -147,6 +161,7 @@ export const pesticideProducts: HomeProduct[] = [
     discount: "20% OFF",
   },
   {
+    id: 114,
     title: "Organic Insecticide",
     price: "₹349.00",
     oldPrice: "₹429.00",
@@ -157,6 +172,7 @@ export const pesticideProducts: HomeProduct[] = [
     discount: "19% OFF",
   },
   {
+    id: 115,
     title: "Fungicide Powder",
     price: "₹275.00",
     oldPrice: "₹325.00",
@@ -167,6 +183,7 @@ export const pesticideProducts: HomeProduct[] = [
     discount: "15% OFF",
   },
   {
+    id: 116,
     title: "Bio-Pesticide",
     price: "₹399.00",
     oldPrice: "₹499.00",
@@ -177,6 +194,7 @@ export const pesticideProducts: HomeProduct[] = [
     discount: "20% OFF",
   },
   {
+    id: 117,
     title: "Weedicide Spray",
     price: "₹299.00",
     oldPrice: "₹379.00",
@@ -190,6 +208,7 @@ export const pesticideProducts: HomeProduct[] = [
 
 export const gardeningProducts: HomeProduct[] = [
   {
+    id: 118,
     title: "Garden Trowel Set",
     price: "₹299.00",
     oldPrice: "₹399.00",
@@ -200,6 +219,7 @@ export const gardeningProducts: HomeProduct[] = [
     discount: "25% OFF",
   },
   {
+    id: 119,
     title: "Watering Can",
     price: "₹449.00",
     oldPrice: "₹549.00",
@@ -210,6 +230,7 @@ export const gardeningProducts: HomeProduct[] = [
     discount: "18% OFF",
   },
   {
+    id: 120,
     title: "Pruning Shears",
     price: "₹349.00",
     oldPrice: "₹449.00",
@@ -220,6 +241,7 @@ export const gardeningProducts: HomeProduct[] = [
     discount: "22% OFF",
   },
   {
+    id: 121,
     title: "Plant Pots Set",
     price: "₹599.00",
     oldPrice: "₹799.00",
@@ -230,6 +252,7 @@ export const gardeningProducts: HomeProduct[] = [
     discount: "25% OFF",
   },
   {
+    id: 122,
     title: "Garden Gloves",
     price: "₹149.00",
     oldPrice: "₹199.00",
@@ -243,6 +266,7 @@ export const gardeningProducts: HomeProduct[] = [
 
 export const onSaleProducts: HomeProduct[] = [
   {
+    id: 123,
     title: "Vegetable Combo Pack",
     price: "₹199.00",
     oldPrice: "₹299.00",
@@ -253,6 +277,7 @@ export const onSaleProducts: HomeProduct[] = [
     discount: "33% OFF",
   },
   {
+    id: 124,
     title: "Fruit Combo Pack",
     price: "₹299.00",
     oldPrice: "₹399.00",
@@ -263,6 +288,7 @@ export const onSaleProducts: HomeProduct[] = [
     discount: "25% OFF",
   },
   {
+    id: 125,
     title: "Masala Combo Pack",
     price: "₹249.00",
     oldPrice: "₹349.00",
@@ -273,6 +299,7 @@ export const onSaleProducts: HomeProduct[] = [
     discount: "29% OFF",
   },
   {
+    id: 126,
     title: "Millet Combo Pack",
     price: "₹179.00",
     oldPrice: "₹249.00",
@@ -283,6 +310,7 @@ export const onSaleProducts: HomeProduct[] = [
     discount: "28% OFF",
   },
   {
+    id: 127,
     title: "Premium Almonds",
     price: "₹599.00",
     oldPrice: "₹899.00",
@@ -293,6 +321,7 @@ export const onSaleProducts: HomeProduct[] = [
     discount: "33% OFF",
   },
   {
+    id: 128,
     title: "Organic Compost",
     price: "₹249.00",
     oldPrice: "₹399.00",
@@ -306,6 +335,7 @@ export const onSaleProducts: HomeProduct[] = [
 
 export const nogaProducts: HomeProduct[] = [
   {
+    id: 129,
     title: "Noga Fertilizer",
     price: "₹499.00",
     oldPrice: "₹649.00",
@@ -316,6 +346,7 @@ export const nogaProducts: HomeProduct[] = [
     discount: "23% OFF",
   },
   {
+    id: 130,
     title: "Noga Pesticide",
     price: "₹399.00",
     oldPrice: "₹529.00",
@@ -326,6 +357,7 @@ export const nogaProducts: HomeProduct[] = [
     discount: "25% OFF",
   },
   {
+    id: 131,
     title: "Noga Seed Booster",
     price: "₹249.00",
     oldPrice: "₹329.00",
@@ -336,6 +368,7 @@ export const nogaProducts: HomeProduct[] = [
     discount: "24% OFF",
   },
   {
+    id: 132,
     title: "Noga Growth Booster",
     price: "₹599.00",
     oldPrice: "₹799.00",
@@ -346,6 +379,7 @@ export const nogaProducts: HomeProduct[] = [
     discount: "25% OFF",
   },
   {
+    id: 133,
     title: "Noga Soil Mix",
     price: "₹349.00",
     oldPrice: "₹449.00",
@@ -359,6 +393,7 @@ export const nogaProducts: HomeProduct[] = [
 
 export const animalFeedProducts: HomeProduct[] = [
   {
+    id: 134,
     title: "Cattle Feed",
     price: "₹850.00",
     oldPrice: "₹999.00",
@@ -369,6 +404,7 @@ export const animalFeedProducts: HomeProduct[] = [
     discount: "15% OFF",
   },
   {
+    id: 135,
     title: "Poultry Feed",
     price: "₹650.00",
     oldPrice: "₹799.00",
@@ -379,6 +415,7 @@ export const animalFeedProducts: HomeProduct[] = [
     discount: "19% OFF",
   },
   {
+    id: 136,
     title: "Fish Feed",
     price: "₹450.00",
     oldPrice: "₹549.00",
@@ -389,6 +426,7 @@ export const animalFeedProducts: HomeProduct[] = [
     discount: "18% OFF",
   },
   {
+    id: 137,
     title: "Goat Feed",
     price: "₹750.00",
     oldPrice: "₹899.00",
@@ -399,6 +437,7 @@ export const animalFeedProducts: HomeProduct[] = [
     discount: "17% OFF",
   },
   {
+    id: 138,
     title: "Horse Feed",
     price: "₹999.00",
     oldPrice: "₹1199.00",
@@ -412,6 +451,7 @@ export const animalFeedProducts: HomeProduct[] = [
 
 export const agroEngineeringProducts: HomeProduct[] = [
   {
+    id: 139,
     title: "Tractor Spare Parts",
     price: "₹1499.00",
     oldPrice: "₹1899.00",
@@ -422,6 +462,7 @@ export const agroEngineeringProducts: HomeProduct[] = [
     discount: "21% OFF",
   },
   {
+    id: 140,
     title: "Drip Irrigation Kit",
     price: "₹2499.00",
     oldPrice: "₹3199.00",
@@ -432,6 +473,7 @@ export const agroEngineeringProducts: HomeProduct[] = [
     discount: "22% OFF",
   },
   {
+    id: 141,
     title: "Water Pump",
     price: "₹5999.00",
     oldPrice: "₹7499.00",
@@ -442,6 +484,7 @@ export const agroEngineeringProducts: HomeProduct[] = [
     discount: "20% OFF",
   },
   {
+    id: 142,
     title: "Solar Fence",
     price: "₹3999.00",
     oldPrice: "₹4999.00",
@@ -452,6 +495,7 @@ export const agroEngineeringProducts: HomeProduct[] = [
     discount: "20% OFF",
   },
   {
+    id: 143,
     title: "Greenhouse Sheet",
     price: "₹1999.00",
     oldPrice: "₹2599.00",
