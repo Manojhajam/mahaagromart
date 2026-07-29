@@ -41,55 +41,27 @@ function FilterSidebar({
   setMinRating: (v: number) => void;
   closeMobile?: () => void;
 }) {
-  const [catOpen, setCatOpen] = useState(false);
-
   return (
     <div className="space-y-8">
       {/* Category Filter */}
-      <div className="relative">
+      <div>
         <h3 className="font-bold text-gray-900 mb-3 text-lg">Category</h3>
-        <button
-          type="button"
-          onClick={() => setCatOpen(!catOpen)}
-          onBlur={() => setTimeout(() => setCatOpen(false), 200)}
-          className="flex items-center justify-between w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-700 bg-white hover:border-gray-400"
-        >
-          <span className={selectedCat ? "" : "text-gray-400"}>
-            {selectedCat || "All Categories"}
-          </span>
-          <DownOutlined className="text-xs" />
-        </button>
-        {catOpen && (
-          <div className="absolute z-10 mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg max-h-60 overflow-y-auto">
+        <div className="space-y-1 max-h-64 overflow-y-auto">
+          {categories.map((cat) => (
             <button
+              key={cat}
               type="button"
-              onClick={() => {
-                setSelectedCat(null);
-                setCatOpen(false);
-              }}
-              className="w-full text-left px-3 py-2 text-sm text-gray-600 hover:bg-green-50"
+              onClick={() => setSelectedCat(cat)}
+              className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
+                selectedCat === cat
+                  ? "bg-green-700 text-white font-medium"
+                  : "text-gray-600 hover:bg-green-50"
+              }`}
             >
-              All Categories
+              {cat}
             </button>
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                type="button"
-                onClick={() => {
-                  setSelectedCat(cat);
-                  setCatOpen(false);
-                }}
-                className={`w-full text-left px-3 py-2 text-sm hover:bg-green-50 ${
-                  selectedCat === cat
-                    ? "text-green-700 font-medium bg-green-50"
-                    : "text-gray-600"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-        )}
+          ))}
+        </div>
       </div>
 
       {/* Price Filter */}
