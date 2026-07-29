@@ -197,7 +197,7 @@ export default async function ProductDetailPage({ params }: Props) {
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
             {related.map((p) => (
-              <div key={p.id} className="h-[340px]">
+              <div key={p.id} className="">
                 <ProductCard
                   id={p.id}
                   title={p.title}
