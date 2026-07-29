@@ -1,5 +1,3 @@
-
-
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -80,25 +78,6 @@ export default async function ProductDetailPage({ params }: Props) {
   return (
     <div>
       <section className="container py-8">
-        <nav className="text-sm text-gray-400 mb-6">
-          <Link href="/" className="hover:text-green-700">
-            Home
-          </Link>
-          <span className="mx-2">/</span>
-          <Link href="/category" className="hover:text-green-700">
-            Products
-          </Link>
-          <span className="mx-2">/</span>
-          <Link
-            href={`/category?cat=${encodeURIComponent(product.category)}`}
-            className="hover:text-green-700"
-          >
-            {product.category}
-          </Link>
-          <span className="mx-2">/</span>
-          <span className="text-gray-600">{product.title}</span>
-        </nav>
-
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           <div className="bg-gray-50 rounded-2xl overflow-hidden">
             <img
