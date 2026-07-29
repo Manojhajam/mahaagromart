@@ -10,6 +10,7 @@ import {
   agroEngineeringProducts,
   type HomeProduct,
 } from "@/data/homeProducts";
+import SomeMore from "./SomeMore";
 
 function ProductRow({ title, items }: { title: string; items: HomeProduct[] }) {
   return (
@@ -33,6 +34,7 @@ export default function ProductShowcase() {
   return (
     <div>
       <ProductRow title="Fruit Products" items={fruitProducts} />
+      <SomeMore images={["/img/1.png", "/img/2.png", "/img/3.png"]} />
       <ProductRow title="Food Products" items={foodProducts} />
       <ProductRow title="Pesticides" items={pesticideProducts} />
       <ProductRow title="Gardening" items={gardeningProducts} />

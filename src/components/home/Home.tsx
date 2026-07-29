@@ -2,7 +2,7 @@
 
 import Banner, { Categories } from "./Banner";
 import DealOfTheWeek from "./DealoftheWeek";
-import ProductShowcase from "./FruitProduct";
+import ProductShowcase from "./ProductShowcase";
 
 const Home = () => {
   return (
