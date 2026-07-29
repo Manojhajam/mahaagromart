@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { Button } from "antd";
 
 export default function Banner() {
@@ -30,6 +30,8 @@ export default function Banner() {
 }
 
 export function Categories() {
+  const router = useRouter();
+
   return (
     <section className="py-8">
       <div className="container">
@@ -40,6 +42,11 @@ export function Categories() {
           {categories.map((category) => (
             <div
               key={category.name}
+              onClick={() =>
+                router.push(
+                  `/category?cat=${encodeURIComponent(category.name)}`
+                )
+              }
               className="flex cursor-pointer flex-col items-center rounded-xl bg-white p-4 shadow-sm transition hover:shadow-md"
             >
               <div className="flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-3xl">
@@ -57,12 +64,12 @@ export function Categories() {
 }
 
 const categories = [
-  { name: "Fruits and Vegetables", icon: "🍎" },
+  { name: "Fruits & Vegetables", icon: "🍎" },
   { name: "Food Products", icon: "🥫" },
   { name: "Millets", icon: "🌾" },
   { name: "Fertilizers", icon: "🧪" },
   { name: "Pesticides", icon: "🧴" },
-  { name: "Seed's", icon: "🌱" },
+  { name: "Seeds", icon: "🌱" },
   { name: "Combo Packs", icon: "📦" },
   { name: "Gardening", icon: "🧑‍🌾" },
 ];
