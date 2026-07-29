@@ -55,6 +55,11 @@ const Navbar = () => {
     }
   };
 
+  const handleCategorySelect = (category: string) => {
+    router.push(`/category?cat=${encodeURIComponent(category)}`);
+    setDropdownOpen(false);
+  };
+
   return (
     <div>
       <div className="bg-green-900">
@@ -115,7 +120,7 @@ const Navbar = () => {
                 <button
                   key={cat.name}
                   type="button"
-                  onClick={() => handleSearch(cat.name)}
+                  onClick={() => handleCategorySelect(cat.name)}
                   className="flex items-center gap-3 w-full px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-green-700 transition-colors"
                 >
                   <span className="text-lg">{cat.icon}</span>
@@ -138,7 +143,7 @@ const Navbar = () => {
           />
           <button
             type="button"
-            onClick={handleSearch}
+            onClick={()=>handleSearch()}
             className="flex items-center gap-2 bg-yellow-400 px-6 py-3 text-sm font-bold text-black hover:bg-yellow-500"
           >
             SEARCH
