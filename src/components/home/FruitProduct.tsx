@@ -69,12 +69,81 @@ const fruitProducts = [
   },
 ];
 
-export default function FruitProduct() {
+const foodProducts = [
+  {
+    title: "Kala Tikha Masala",
+    price: "₹85.00",
+    oldPrice: "₹100.00",
+    image:
+      "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=400&h=400&fit=crop",
+    color: "bg-orange-100",
+    category: "Food Products",
+    label: "KALA TIKHA MASALA",
+    discount: "15% OFF",
+  },
+  {
+    title: "Kanda Lasun Masala",
+    price: "₹85.00",
+    oldPrice: "₹90.00",
+    image:
+      "https://images.unsplash.com/photo-1596097635121-14b456b4db5b?w=400&h=400&fit=crop",
+    color: "bg-red-100",
+    category: "Food Products",
+    label: "KANDA LASUN MASALA",
+    discount: "6% OFF",
+  },
+  {
+    title: "Chilly Powder",
+    price: "₹1699.00",
+    oldPrice: "₹1700.00",
+    image:
+      "https://images.unsplash.com/photo-1587049352847-81a56d773cae?w=400&h=400&fit=crop",
+    color: "bg-red-50",
+    category: "Food Products",
+    label: "CHILLY POWDER",
+    discount: "1% OFF",
+  },
+  {
+    title: "Turmeric Powder",
+    price: "₹15.00",
+    oldPrice: "₹18.00",
+    image:
+      "https://images.unsplash.com/photo-1615485500834-bc10199a727e?w=400&h=400&fit=crop",
+    color: "bg-yellow-100",
+    category: "Food Products",
+    label: "TURMERIC POWDER",
+    discount: "17% OFF",
+  },
+  {
+    title: "Coriander Powder",
+    price: "₹25.00",
+    oldPrice: "₹30.00",
+    image:
+      "https://images.unsplash.com/photo-1599901860904-7e6fec3e0b50?w=400&h=400&fit=crop",
+    color: "bg-green-50",
+    category: "Food Products",
+    label: "CORIANDER POWDER",
+    discount: "17% OFF",
+  },
+  {
+    title: "Cumin Seeds",
+    price: "₹45.00",
+    oldPrice: "₹55.00",
+    image:
+      "https://images.unsplash.com/photo-1589217119732-f9d9e3e1c7c6?w=400&h=400&fit=crop",
+    color: "bg-amber-50",
+    category: "Food Products",
+    label: "CUMIN SEEDS",
+    discount: "18% OFF",
+  },
+];
+
+function ProductRow({ title, items }: { title: string; items: typeof fruitProducts }) {
   return (
     <section className="py-10">
-      <h2 className="text-2xl font-bold text-gray-900 mb-6">Fruit Products</h2>
+      <h2 className="text-2xl font-bold text-gray-900 mb-6">{title}</h2>
       <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide -mx-4 px-4 pb-2">
-        {fruitProducts.map((p) => (
+        {items.map((p) => (
           <div
             key={p.title}
             className="w-[calc(100%-8px)] sm:w-[calc(50%-11px)] md:w-[calc(40%-12px)] lg:w-[calc(20%-13px)] h-[360px] sm:h-[400px] lg:h-[440px] snap-start shrink-0"
@@ -84,5 +153,14 @@ export default function FruitProduct() {
         ))}
       </div>
     </section>
+  );
+}
+
+export default function ProductShowcase() {
+  return (
+    <div>
+      <ProductRow title="Fruit Products" items={fruitProducts} />
+      <ProductRow title="Food Products" items={foodProducts} />
+    </div>
   );
 }
