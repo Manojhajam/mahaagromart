@@ -25,51 +25,71 @@ function parsePrice(p: string) {
 }
 
 function FilterSidebar({
-  selectedCats,
-  setSelectedCats,
+  selectedCat,
+  setSelectedCat,
   priceRange,
   setPriceRange,
   minRating,
   setMinRating,
   closeMobile,
 }: {
-  selectedCats: string[];
-  setSelectedCats: (v: string[]) => void;
+  selectedCat: string | null;
+  setSelectedCat: (v: string | null) => void;
   priceRange: { min: number; max: number } | null;
   setPriceRange: (v: { min: number; max: number } | null) => void;
   minRating: number;
   setMinRating: (v: number) => void;
   closeMobile?: () => void;
 }) {
-  const toggleCat = (cat: string) => {
-    setSelectedCats(
-      selectedCats.includes(cat)
-        ? selectedCats.filter((c) => c !== cat)
-        : [...selectedCats, cat]
-    );
-  };
+  const [catOpen, setCatOpen] = useState(false);
 
   return (
     <div className="space-y-8">
       {/* Category Filter */}
-      <div>
+      <div className="relative">
         <h3 className="font-bold text-gray-900 mb-3 text-lg">Category</h3>
-        <div className="space-y-2 max-h-64 overflow-y-auto">
-          {categories.map((cat) => (
-            <label
-              key={cat}
-              className="flex items-center gap-2 cursor-pointer text-sm text-gray-600 hover:text-gray-900"
+        <button
+          type="button"
+          onClick={() => setCatOpen(!catOpen)}
+          onBlur={() => setTimeout(() => setCatOpen(false), 200)}
+          className="flex items-center justify-between w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-700 bg-white hover:border-gray-400"
+        >
+          <span className={selectedCat ? "" : "text-gray-400"}>
+            {selectedCat || "All Categories"}
+          </span>
+          <DownOutlined className="text-xs" />
+        </button>
+        {catOpen && (
+          <div className="absolute z-10 mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg max-h-60 overflow-y-auto">
+            <button
+              type="button"
+              onClick={() => {
+                setSelectedCat(null);
+                setCatOpen(false);
+              }}
+              className="w-full text-left px-3 py-2 text-sm text-gray-600 hover:bg-green-50"
             >
-              <input
-                type="checkbox"
-                checked={selectedCats.includes(cat)}
-                onChange={() => toggleCat(cat)}
-                className="accent-green-700 w-4 h-4"
-              />
-              {cat}
-            </label>
-          ))}
-        </div>
+              All Categories
+            </button>
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                type="button"
+                onClick={() => {
+                  setSelectedCat(cat);
+                  setCatOpen(false);
+                }}
+                className={`w-full text-left px-3 py-2 text-sm hover:bg-green-50 ${
+                  selectedCat === cat
+                    ? "text-green-700 font-medium bg-green-50"
+                    : "text-gray-600"
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Price Filter */}
@@ -146,9 +166,8 @@ export default function CategoryPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const [selectedCats, setSelectedCats] = useState<string[]>(() => {
-    const cat = searchParams.get("cat");
-    return cat ? [cat] : [];
+  const [selectedCat, setSelectedCat] = useState<string | null>(() => {
+    return searchParams.get("cat") || null;
   });
   const [priceRange, setPriceRange] = useState<{
     min: number;
@@ -159,8 +178,7 @@ export default function CategoryPage() {
 
   const filtered = useMemo(() => {
     return products.filter((p) => {
-      if (selectedCats.length > 0 && !selectedCats.includes(p.category))
-        return false;
+      if (selectedCat && p.category !== selectedCat) return false;
       if (priceRange) {
         const num = parsePrice(p.price);
         if (num < priceRange.min || num > priceRange.max) return false;
@@ -168,17 +186,17 @@ export default function CategoryPage() {
       if (minRating > 0 && p.rating < minRating) return false;
       return true;
     });
-  }, [selectedCats, priceRange, minRating]);
+  }, [selectedCat, priceRange, minRating]);
 
   const clearFilters = () => {
-    setSelectedCats([]);
+    setSelectedCat(null);
     setPriceRange(null);
     setMinRating(0);
     router.replace("/category", { scroll: false });
   };
 
   const hasActiveFilters =
-    selectedCats.length > 0 || priceRange !== null || minRating > 0;
+    selectedCat !== null || priceRange !== null || minRating > 0;
 
   return (
     <div>
@@ -191,7 +209,7 @@ export default function CategoryPage() {
         />
         <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
           <h1 className="text-3xl sm:text-5xl font-bold text-white text-center px-4">
-            {searchParams.get("cat") || "All Products"}
+            {selectedCat || "All Products"}
           </h1>
         </div>
       </section>
@@ -213,8 +231,8 @@ export default function CategoryPage() {
                 )}
               </div>
               <FilterSidebar
-                selectedCats={selectedCats}
-                setSelectedCats={setSelectedCats}
+                selectedCat={selectedCat}
+                setSelectedCat={setSelectedCat}
                 priceRange={priceRange}
                 setPriceRange={setPriceRange}
                 minRating={minRating}
@@ -254,8 +272,8 @@ export default function CategoryPage() {
                   </button>
                 </div>
                 <FilterSidebar
-                  selectedCats={selectedCats}
-                  setSelectedCats={setSelectedCats}
+                  selectedCat={selectedCat}
+                  setSelectedCat={setSelectedCat}
                   priceRange={priceRange}
                   setPriceRange={setPriceRange}
                   minRating={minRating}
@@ -286,22 +304,17 @@ export default function CategoryPage() {
             {/* Active filter chips */}
             {hasActiveFilters && (
               <div className="flex flex-wrap gap-2 mb-4">
-                {selectedCats.map((cat) => (
-                  <span
-                    key={cat}
-                    className="inline-flex items-center gap-1 bg-green-50 text-green-700 text-xs font-medium px-2.5 py-1 rounded-full"
-                  >
-                    {cat}
+                {selectedCat && (
+                  <span className="inline-flex items-center gap-1 bg-green-50 text-green-700 text-xs font-medium px-2.5 py-1 rounded-full">
+                    {selectedCat}
                     <button
-                      onClick={() =>
-                        setSelectedCats(selectedCats.filter((c) => c !== cat))
-                      }
+                      onClick={() => setSelectedCat(null)}
                       className="ml-1 hover:text-green-900"
                     >
                       &times;
                     </button>
                   </span>
-                ))}
+                )}
                 {priceRange && (
                   <span className="inline-flex items-center gap-1 bg-green-50 text-green-700 text-xs font-medium px-2.5 py-1 rounded-full">
                     {priceRange.max === Infinity
