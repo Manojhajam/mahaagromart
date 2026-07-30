@@ -1,5 +1,18 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary: #15803d;
+  --color-primary-light: #16a34a;
+  --color-primary-dark: #14532d;
+  --color-primary-bg: #f0fdf4;
+  --color-accent: #eab308;
+  --color-accent-light: #facc15;
+  --color-danger: #ef4444;
+  --color-heart: #f87171;
+  --color-text-dark: #111827;
+  --color-text-body: #4b5563;
+}
+
 @keyframes marquee {
   from {
     transform: translateX(0%);
@@ -26,3 +39,4 @@
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
