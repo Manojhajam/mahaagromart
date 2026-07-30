@@ -17,7 +17,7 @@ import Image from "next/image";
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useCart } from "@/context/CartContext";
 import CartDrawer from "@/components/CartDrawer";
 import { subcategories } from "@/data/products";
@@ -58,7 +58,29 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { totalItems } = useCart();
   const categoryListRef = useRef<HTMLDivElement>(null);
+  const dropdownContainerRef = useRef<HTMLDivElement>(null);
   const [submenuTop, setSubmenuTop] = useState(0);
+  const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!dropdownOpen) return;
+    const handleOutside = (e: MouseEvent | TouchEvent) => {
+      if (
+        dropdownContainerRef.current &&
+        !dropdownContainerRef.current.contains(e.target as Node)
+      ) {
+        setDropdownOpen(false);
+        setHoveredCategory(null);
+        setExpandedCategory(null);
+      }
+    };
+    document.addEventListener("mousedown", handleOutside);
+    document.addEventListener("touchstart", handleOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleOutside);
+      document.removeEventListener("touchstart", handleOutside);
+    };
+  }, [dropdownOpen]);
 
   const handleSearch = (query?: string) => {
     const q = query || searchText.trim();
@@ -72,6 +94,7 @@ const Navbar = () => {
     router.push(`/category?cat=${encodeURIComponent(category)}`);
     setDropdownOpen(false);
     setHoveredCategory(null);
+    setExpandedCategory(null);
   };
 
   const handleSubCategorySelect = (category: string, sub: string) => {
@@ -80,6 +103,7 @@ const Navbar = () => {
     );
     setDropdownOpen(false);
     setHoveredCategory(null);
+    setExpandedCategory(null);
   };
 
   return (
@@ -178,10 +202,12 @@ setHoveredCategory text-sm text-gray-700 hover:bg-gray-50 hover:text-primary tra
         </div> */}
 
         <div
+          ref={dropdownContainerRef}
           className="relative"
           onMouseLeave={() => {
             setDropdownOpen(false);
             setHoveredCategory(null);
+            setExpandedCategory(null);
           }}
         >
           <button
@@ -195,71 +221,131 @@ setHoveredCategory text-sm text-gray-700 hover:bg-gray-50 hover:text-primary tra
           </button>
 
           {dropdownOpen && (
-            <div className="absolute top-full left-0 z-50">
-              {/* Categories */}
-              <div
-                ref={categoryListRef}
-                className="w-64 bg-white border border-gray-200 rounded-xl shadow-lg max-h-80 overflow-y-auto scrollbar-none"
-              >
+            <div className="md:absolute md:top-full md:left-0 md:z-50 fixed inset-x-4 top-16 z-50">
+              {/* Desktop (md+) - hover flyout */}
+              <div className="hidden md:block">
+                <div
+                  ref={categoryListRef}
+                  className="w-64 bg-white border border-gray-200 rounded-xl shadow-lg max-h-80 overflow-y-auto scrollbar-none"
+                >
+                  {categoryList.map((cat) => {
+                    const subs = subcategories[cat.name] || [];
+
+                    return (
+                      <div
+                        key={cat.name}
+                        onMouseEnter={(e) => {
+                          setHoveredCategory(cat.name);
+
+                          if (!categoryListRef.current) return;
+
+                          const parentRect =
+                            categoryListRef.current.getBoundingClientRect();
+
+                          const itemRect =
+                            e.currentTarget.getBoundingClientRect();
+
+                          setSubmenuTop(itemRect.top - parentRect.top);
+                        }}
+                        onClick={() => {
+                          if (!subs.length) {
+                            handleCategorySelect(cat.name);
+                          }
+                        }}
+                        className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary cursor-pointer transition-colors"
+                      >
+                        <span className="text-lg">{cat.icon}</span>
+
+                        <span className="flex-1">{cat.name}</span>
+
+                        {subs.length > 0 && (
+                          <span className="text-gray-400 text-xs">›</span>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* Subcategories flyout */}
+                {hoveredCategory &&
+                  subcategories[hoveredCategory]?.length > 0 && (
+                    <div
+                      className="absolute left-full w-56 bg-white border border-gray-200 rounded-xl shadow-lg py-2 max-h-80 overflow-y-auto scrollbar-none"
+                      style={{ top: submenuTop }}
+                    >
+                      {subcategories[hoveredCategory].map((sub) => (
+                        <button
+                          key={sub}
+                          type="button"
+                          onClick={() =>
+                            handleSubCategorySelect(hoveredCategory, sub)
+                          }
+                          className="block w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors"
+                        >
+                          {sub}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+              </div>
+
+              {/* Mobile (below md) - accordion */}
+              <div className="md:hidden bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden max-h-[80vh] overflow-y-auto">
                 {categoryList.map((cat) => {
                   const subs = subcategories[cat.name] || [];
+                  const hasSubs = subs.length > 0;
+                  const isExpanded = expandedCategory === cat.name;
 
                   return (
-                    <div
-                      key={cat.name}
-                      onMouseEnter={(e) => {
-                        setHoveredCategory(cat.name);
+                    <div key={cat.name}>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (hasSubs) {
+                            setExpandedCategory(isExpanded ? null : cat.name);
+                          } else {
+                            handleCategorySelect(cat.name);
+                          }
+                        }}
+                        className="flex items-center gap-3 w-full px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0"
+                      >
+                        <span className="text-lg">{cat.icon}</span>
+                        <span className="flex-1 text-left">{cat.name}</span>
+                        {hasSubs && (
+                          <DownOutlined
+                            className={`text-xs transition-transform duration-200 ${
+                              isExpanded ? "rotate-180" : ""
+                            }`}
+                          />
+                        )}
+                      </button>
 
-                        if (!categoryListRef.current) return;
-
-                        const parentRect =
-                          categoryListRef.current.getBoundingClientRect();
-
-                        const itemRect =
-                          e.currentTarget.getBoundingClientRect();
-
-                        setSubmenuTop(itemRect.top - parentRect.top);
-                      }}
-                      onClick={() => {
-                        if (!subs.length) {
-                          handleCategorySelect(cat.name);
-                        }
-                      }}
-                      className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary cursor-pointer transition-colors"
-                    >
-                      <span className="text-lg">{cat.icon}</span>
-
-                      <span className="flex-1">{cat.name}</span>
-
-                      {subs.length > 0 && (
-                        <span className="text-gray-400 text-xs">›</span>
+                      {hasSubs && (
+                        <div
+                          className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                            isExpanded ? "max-h-96" : "max-h-0"
+                          }`}
+                        >
+                          <div className="bg-gray-50 border-b border-gray-100">
+                            {subs.map((sub) => (
+                              <button
+                                key={sub}
+                                type="button"
+                                onClick={() =>
+                                  handleSubCategorySelect(cat.name, sub)
+                                }
+                                className="block w-full text-left px-10 py-2.5 text-sm text-gray-600 hover:bg-gray-100 hover:text-primary transition-colors"
+                              >
+                                {sub}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
                       )}
                     </div>
                   );
                 })}
               </div>
-
-              {/* Subcategories */}
-              {hoveredCategory &&
-                subcategories[hoveredCategory]?.length > 0 && (
-                  <div
-                    className="absolute left-full w-56 bg-white border border-gray-200 rounded-xl shadow-lg py-2 max-h-80 overflow-y-auto scrollbar-none"
-                    style={{ top: submenuTop }}
-                  >
-                    {subcategories[hoveredCategory].map((sub) => (
-                      <button
-                        key={sub}
-                        type="button"
-                        onClick={() =>
-                          handleSubCategorySelect(hoveredCategory, sub)
-                        }
-                        className="block w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors"
-                      >
-                        {sub}
-                      </button>
-                    ))}
-                  </div>
-                )}
             </div>
           )}
         </div>
