@@ -221,9 +221,9 @@ setHoveredCategory text-sm text-gray-700 hover:bg-gray-50 hover:text-primary tra
           </button>
 
           {dropdownOpen && (
-            <div className="md:absolute md:top-full md:left-0 md:z-50 fixed inset-x-4 top-16 z-50">
+            <>
               {/* Desktop (md+) - hover flyout */}
-              <div className="hidden md:block">
+              <div className="hidden md:block absolute top-full left-0 z-50">
                 <div
                   ref={categoryListRef}
                   className="w-64 bg-white border border-gray-200 rounded-xl shadow-lg max-h-80 overflow-y-auto scrollbar-none"
@@ -290,7 +290,7 @@ setHoveredCategory text-sm text-gray-700 hover:bg-gray-50 hover:text-primary tra
               </div>
 
               {/* Mobile (below md) - accordion */}
-              <div className="md:hidden bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden max-h-[80vh] overflow-y-auto">
+              <div className="md:hidden fixed inset-x-4 top-16 z-50 bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden max-h-[80vh] overflow-y-auto">
                 {categoryList.map((cat) => {
                   const subs = subcategories[cat.name] || [];
                   const hasSubs = subs.length > 0;
@@ -346,7 +346,7 @@ setHoveredCategory text-sm text-gray-700 hover:bg-gray-50 hover:text-primary tra
                   );
                 })}
               </div>
-            </div>
+            </>
           )}
         </div>
 
