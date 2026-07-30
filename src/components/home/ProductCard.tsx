@@ -36,7 +36,7 @@ export default function ProductCard({
   return (
     <div
       onClick={() => router.push(`/product/${id}`)}
-      className="bg-white rounded-2xl shadow-sm border border-gray-300 p-3 sm:p-5 flex flex-col relative h-full transition-transform duration-300 ease-in-out hover:scale-105 cursor-pointer"
+      className="bg-white rounded-2xl shadow-sm border border-gray-100 p-3 sm:p-5 flex flex-col relative h-full transition-transform duration-300 ease-in-out hover:scale-105 cursor-pointer"
     >
       {category && (
         <div className="flex items-start justify-between">
