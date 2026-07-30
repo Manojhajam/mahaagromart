@@ -2,7 +2,7 @@
 
 import { useSearchParams, useRouter } from "next/navigation";
 import { Suspense, useState, useMemo, useEffect } from "react";
-import products, { categories } from "@/data/products";
+import products, { categories, subcategories } from "@/data/products";
 import ProductCard from "@/components/home/ProductCard";
 import { DownOutlined } from "@ant-design/icons";
 
@@ -139,9 +139,11 @@ function CategoryPageContent() {
   const router = useRouter();
 
   const [selectedCat, setSelectedCat] = useState<string | null>(null);
+  const [selectedSub, setSelectedSub] = useState<string | null>(null);
 
   useEffect(() => {
     setSelectedCat(searchParams.get("cat") || null);
+    setSelectedSub(searchParams.get("sub") || null);
   }, [searchParams]);
   const [priceRange, setPriceRange] = useState<{
     min: number;
@@ -153,6 +155,7 @@ function CategoryPageContent() {
   const filtered = useMemo(() => {
     return products.filter((p) => {
       if (selectedCat && p.category !== selectedCat) return false;
+      if (selectedSub && p.subCategory !== selectedSub) return false;
       if (priceRange) {
         const num = parsePrice(p.price);
         if (num < priceRange.min || num > priceRange.max) return false;
@@ -160,7 +163,7 @@ function CategoryPageContent() {
       if (minRating > 0 && p.rating < minRating) return false;
       return true;
     });
-  }, [selectedCat, priceRange, minRating]);
+  }, [selectedCat, selectedSub, priceRange, minRating]);
 
   const clearFilters = () => {
     setPriceRange(null);
@@ -180,7 +183,7 @@ function CategoryPageContent() {
         />
         <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
           <h1 className="text-3xl sm:text-5xl font-bold text-white text-center px-4">
-            {selectedCat || "All Products"}
+            {selectedSub || selectedCat || "All Products"}
           </h1>
         </div>
       </section>
