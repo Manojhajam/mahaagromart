@@ -20,6 +20,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { useCart } from "@/context/CartContext";
 import CartDrawer from "@/components/CartDrawer";
+import { subcategories } from "@/data/products";
 
 const navItems = [
   { label: "Home", href: "/" },
@@ -52,6 +53,7 @@ const Navbar = () => {
   const router = useRouter();
   const [searchText, setSearchText] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
   const [cartOpen, setCartOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { totalItems } = useCart();
@@ -67,6 +69,13 @@ const Navbar = () => {
   const handleCategorySelect = (category: string) => {
     router.push(`/category?cat=${encodeURIComponent(category)}`);
     setDropdownOpen(false);
+    setHoveredCategory(null);
+  };
+
+  const handleSubCategorySelect = (category: string, sub: string) => {
+    router.push(`/category?cat=${encodeURIComponent(category)}&sub=${encodeURIComponent(sub)}`);
+    setDropdownOpen(false);
+    setHoveredCategory(null);
   };
 
   return (
@@ -112,7 +121,10 @@ const Navbar = () => {
           />
         </div>
         {/* Category dropdown */}
-        <div className="relative">
+        <div
+          className="relative"
+          onMouseLeave={() => { setDropdownOpen(false); setHoveredCategory(null); }}
+        >
           <button
             type="button"
             onClick={() => setDropdownOpen(!dropdownOpen)}
@@ -124,18 +136,39 @@ const Navbar = () => {
             <DownOutlined className="text-xs" />
           </button>
           {dropdownOpen && (
-            <div className="absolute top-full mt-2 left-0 w-64 bg-white border border-gray-200 rounded-xl shadow-lg z-50 max-h-80 overflow-y-auto">
-              {categoryList.map((cat) => (
-                <button
-                  key={cat.name}
-                  type="button"
-                  onClick={() => handleCategorySelect(cat.name)}
-                  className="flex items-center gap-3 w-full px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors"
-                >
-                  <span className="text-lg">{cat.icon}</span>
-                  <span>{cat.name}</span>
-                </button>
-              ))}
+            <div className="absolute top-full left-0 flex bg-white border border-gray-200 rounded-xl shadow-lg z-50">
+              <div className="w-64 max-h-80 overflow-y-auto scrollbar-none">
+                {categoryList.map((cat) => {
+                  const subs = subcategories[cat.name] || [];
+                  return (
+                    <div
+                      key={cat.name}
+                      onMouseEnter={() => setHoveredCategory(cat.name)}
+                      onClick={() => !subs.length && handleCategorySelect(cat.name)}
+                      className="flex items-center gap-3 w-full px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors cursor-pointer"
+                    >
+                      <span className="text-lg">{cat.icon}</span>
+                      <span className="flex-1">{cat.name}</span>
+                      {subs.length > 0 && <span className="text-gray-400 text-xs">›</span>}
+                    </div>
+                  );
+                })}
+              </div>
+              {hoveredCategory && subcategories[hoveredCategory]?.length > 0 && (
+                <div className="w-56 max-h-80 overflow-y-auto border-l border-gray-200 py-2 scrollbar-none">
+                  {subcategories[hoveredCategory].map((sub) => (
+                    <button
+                      key={sub}
+                      type="button"
+                      onClick={() => handleSubCategorySelect(hoveredCategory, sub)}
+                      className="w-full text-left px-4 py-2.5 setHoveredCategory
+setHoveredCategory text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors"
+                    >
+                      {sub}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           )}
         </div>
