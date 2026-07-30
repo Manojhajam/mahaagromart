@@ -212,19 +212,6 @@ function CategoryPageContent() {
             </div>
           </aside>
 
-          {/* Mobile Filter Toggle */}
-          <div className="lg:hidden flex items-center justify-between w-full mb-4">
-            <p className="text-gray-500 text-sm">
-              {filtered.length} product{filtered.length !== 1 ? "s" : ""} found
-            </p>
-            <button
-              onClick={() => setMobileFilterOpen(true)}
-              className="flex items-center gap-1 border border-gray-300 rounded-lg px-3 py-1.5 text-sm font-medium text-gray-700"
-            >
-              Filters <DownOutlined className="text-xs" />
-            </button>
-          </div>
-
           {/* Mobile Filter Drawer */}
           {mobileFilterOpen && (
             <div className="fixed inset-0 z-50 lg:hidden">
@@ -232,7 +219,7 @@ function CategoryPageContent() {
                 className="absolute inset-0 bg-black/40"
                 onClick={() => setMobileFilterOpen(false)}
               />
-              <div className="absolute left-0 top-0 bottom-0 w-80 bg-white p-6 overflow-y-auto shadow-2xl">
+              <div className="absolute left-0 top-0 bottom-0 w-80 max-w-[85vw] bg-white p-6 overflow-y-auto shadow-2xl">
                 <div className="flex items-center justify-between mb-6">
                   <h2 className="font-bold text-text-dark text-xl">Filters</h2>
                   <button
@@ -257,6 +244,18 @@ function CategoryPageContent() {
 
           {/* Product Grid */}
           <div className="flex-1 min-w-0">
+            {/* Mobile Filter Toggle */}
+            <div className="lg:hidden flex items-center justify-between w-full mb-4">
+              <p className="text-gray-500 text-sm">
+                {filtered.length} product{filtered.length !== 1 ? "s" : ""} found
+              </p>
+              <button
+                onClick={() => setMobileFilterOpen(true)}
+                className="flex items-center gap-1 border border-gray-300 rounded-lg px-4 py-2 text-sm font-medium text-gray-700"
+              >
+                Filters <DownOutlined className="text-xs" />
+              </button>
+            </div>
             {/* Desktop result count + clear */}
             <div className="hidden lg:flex items-center justify-between mb-6">
               <p className="text-gray-500 text-sm">
@@ -274,8 +273,9 @@ function CategoryPageContent() {
 
             {/* Active filter chips */}
             {hasActiveFilters && (
-              <div className="flex flex-wrap gap-2 mb-4">
-                    {priceRange && (
+              <div>
+                <div className="flex flex-wrap gap-2 mb-4">
+                      {priceRange && (
                   <span className="inline-flex items-center gap-1 bg-primary-bg text-primary text-xs font-medium px-2.5 py-1 rounded-full">
                     {priceRange.max === Infinity
                       ? `₹${priceRange.min}+`
@@ -293,11 +293,15 @@ function CategoryPageContent() {
                     </button>
                   </span>
                 )}
+                </div>
+                <button onClick={clearFilters} className="lg:hidden text-sm text-primary hover:underline mb-4">
+                  Clear all filters
+                </button>
               </div>
             )}
 
             {filtered.length === 0 ? (
-              <div className="text-center py-20 text-gray-400">
+              <div className="text-center py-10 sm:py-20 text-gray-400">
                 <p className="text-lg">No products match your filters</p>
                 <button
                   onClick={clearFilters}
