@@ -17,7 +17,7 @@ import Image from "next/image";
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useCart } from "@/context/CartContext";
 import CartDrawer from "@/components/CartDrawer";
 import { subcategories } from "@/data/products";
@@ -27,7 +27,7 @@ const navItems = [
   { label: "About Us", href: "/about" },
   { label: "Services", href: "/services" },
   { label: "B2B", href: "/b2b" },
-  {label: "Contact Us", href: "/contact" },
+  { label: "Contact Us", href: "/contact" },
 ];
 
 const categoryList = [
@@ -57,6 +57,8 @@ const Navbar = () => {
   const [cartOpen, setCartOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { totalItems } = useCart();
+  const categoryListRef = useRef<HTMLDivElement>(null);
+  const [submenuTop, setSubmenuTop] = useState(0);
 
   const handleSearch = (query?: string) => {
     const q = query || searchText.trim();
@@ -73,7 +75,9 @@ const Navbar = () => {
   };
 
   const handleSubCategorySelect = (category: string, sub: string) => {
-    router.push(`/category?cat=${encodeURIComponent(category)}&sub=${encodeURIComponent(sub)}`);
+    router.push(
+      `/category?cat=${encodeURIComponent(category)}&sub=${encodeURIComponent(sub)}`,
+    );
     setDropdownOpen(false);
     setHoveredCategory(null);
   };
@@ -121,7 +125,7 @@ const Navbar = () => {
           />
         </div>
         {/* Category dropdown */}
-        <div
+        {/* <div
           className="relative"
           onMouseLeave={() => { setDropdownOpen(false); setHoveredCategory(null); }}
         >
@@ -136,7 +140,7 @@ const Navbar = () => {
             <DownOutlined className="text-xs" />
           </button>
           {dropdownOpen && (
-            <div className="absolute top-full left-0 flex bg-white border border-gray-200 rounded-xl shadow-lg z-50">
+            <div className="absolute top-full left-0 flex items-start bg-white border border-gray-200 rounded-xl shadow-lg z-50">
               <div className="w-64 max-h-80 overflow-y-auto scrollbar-none">
                 {categoryList.map((cat) => {
                   const subs = subcategories[cat.name] || [];
@@ -155,7 +159,7 @@ const Navbar = () => {
                 })}
               </div>
               {hoveredCategory && subcategories[hoveredCategory]?.length > 0 && (
-                <div className="w-56 max-h-80 overflow-y-auto border-l border-gray-200 py-2 scrollbar-none">
+                <div className="w-56 self-start max-h-80 overflow-y-auto border-l border-gray-200 py-2 scrollbar-none">
                   {subcategories[hoveredCategory].map((sub) => (
                     <button
                       key={sub}
@@ -169,6 +173,93 @@ setHoveredCategory text-sm text-gray-700 hover:bg-gray-50 hover:text-primary tra
                   ))}
                 </div>
               )}
+            </div>
+          )}
+        </div> */}
+
+        <div
+          className="relative"
+          onMouseLeave={() => {
+            setDropdownOpen(false);
+            setHoveredCategory(null);
+          }}
+        >
+          <button
+            type="button"
+            onClick={() => setDropdownOpen((prev) => !prev)}
+            className="flex items-center gap-2 rounded-full border border-gray-200 bg-white px-5 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50"
+          >
+            <FilterOutlined />
+            <span>All Categories</span>
+            <DownOutlined className="text-xs" />
+          </button>
+
+          {dropdownOpen && (
+            <div className="absolute top-full left-0 z-50">
+              {/* Categories */}
+              <div
+                ref={categoryListRef}
+                className="w-64 bg-white border border-gray-200 rounded-xl shadow-lg max-h-80 overflow-y-auto scrollbar-none"
+              >
+                {categoryList.map((cat) => {
+                  const subs = subcategories[cat.name] || [];
+
+                  return (
+                    <div
+                      key={cat.name}
+                      onMouseEnter={(e) => {
+                        setHoveredCategory(cat.name);
+
+                        if (!categoryListRef.current) return;
+
+                        const parentRect =
+                          categoryListRef.current.getBoundingClientRect();
+
+                        const itemRect =
+                          e.currentTarget.getBoundingClientRect();
+
+                        setSubmenuTop(itemRect.top - parentRect.top);
+                      }}
+                      onClick={() => {
+                        if (!subs.length) {
+                          handleCategorySelect(cat.name);
+                        }
+                      }}
+                      className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary cursor-pointer transition-colors"
+                    >
+                      <span className="text-lg">{cat.icon}</span>
+
+                      <span className="flex-1">{cat.name}</span>
+
+                      {subs.length > 0 && (
+                        <span className="text-gray-400 text-xs">›</span>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Subcategories */}
+              {hoveredCategory &&
+                subcategories[hoveredCategory]?.length > 0 && (
+                  <div
+                    className="absolute left-full w-56 bg-white border border-gray-200 rounded-xl shadow-lg py-2 max-h-80 overflow-y-auto scrollbar-none"
+                    style={{ top: submenuTop }}
+                  >
+                    {subcategories[hoveredCategory].map((sub) => (
+                      <button
+                        key={sub}
+                        type="button"
+                        onClick={() =>
+                          handleSubCategorySelect(hoveredCategory, sub)
+                        }
+                        className="block w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors"
+                      >
+                        {sub}
+                      </button>
+                    ))}
+                  </div>
+                )}
             </div>
           )}
         </div>
@@ -185,7 +276,7 @@ setHoveredCategory text-sm text-gray-700 hover:bg-gray-50 hover:text-primary tra
           />
           <button
             type="button"
-            onClick={()=>handleSearch()}
+            onClick={() => handleSearch()}
             className="flex items-center gap-2 bg-accent-light px-6 py-3 text-sm font-bold text-black hover:bg-accent"
           >
             SEARCH
@@ -242,7 +333,11 @@ setHoveredCategory text-sm text-gray-700 hover:bg-gray-50 hover:text-primary tra
             className="flex md:hidden items-center gap-2 ml-4 px-3 py-2 text-gray-800 hover:text-accent transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            {isMobileMenuOpen ? <CloseOutlined style={{ fontSize: 20 }} /> : <MenuOutlined style={{ fontSize: 20 }} />}
+            {isMobileMenuOpen ? (
+              <CloseOutlined style={{ fontSize: 20 }} />
+            ) : (
+              <MenuOutlined style={{ fontSize: 20 }} />
+            )}
           </button>
         </div>
 
