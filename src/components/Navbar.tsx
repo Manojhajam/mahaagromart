@@ -10,6 +10,8 @@ import {
   ShoppingCartOutlined,
   DownOutlined,
   FilterOutlined,
+  MenuOutlined,
+  CloseOutlined,
 } from "@ant-design/icons";
 import Image from "next/image";
 
@@ -51,6 +53,7 @@ const Navbar = () => {
   const [searchText, setSearchText] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { totalItems } = useCart();
 
   const handleSearch = (query?: string) => {
@@ -184,7 +187,7 @@ const Navbar = () => {
 
       <nav className="w-full">
         <div className="container flex items-center justify-between h-16 border-2 border-gray-400 rounded-md mt-2 bg-gray-100">
-          <ul className="flex items-center gap-8 ml-4">
+          <ul className="hidden md:flex items-center gap-8 ml-4">
             {navItems.map((item) => (
               <li key={item.href}>
                 <Link
@@ -200,7 +203,37 @@ const Navbar = () => {
               </li>
             ))}
           </ul>
+
+          <button
+            type="button"
+            className="flex md:hidden items-center gap-2 ml-4 px-3 py-2 text-gray-800 hover:text-yellow-500 transition-colors"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <CloseOutlined style={{ fontSize: 20 }} /> : <MenuOutlined style={{ fontSize: 20 }} />}
+          </button>
         </div>
+
+        {isMobileMenuOpen && (
+          <div className="md:hidden container bg-gray-50 border border-gray-300 rounded-md mt-1 p-4 shadow-lg">
+            <ul className="flex flex-col gap-3">
+              {navItems.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={`block px-4 py-2 text-sm font-bold rounded-md transition-colors ${
+                      pathname === item.href
+                        ? "text-yellow-500 bg-yellow-50"
+                        : "text-gray-800 hover:text-yellow-500 hover:bg-gray-100"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </nav>
     </div>
   );
