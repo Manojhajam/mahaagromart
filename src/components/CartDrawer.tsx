@@ -40,7 +40,9 @@ export default function CartDrawer({
 
         <div className="flex-1 overflow-y-auto px-5 py-4 space-y-4">
           {items.length === 0 ? (
-            <p className="text-center text-gray-400 mt-20">Your cart is empty</p>
+            <p className="text-center text-gray-400 mt-20">
+              Your cart is empty
+            </p>
           ) : (
             items.map((item) => (
               <div
@@ -61,9 +63,7 @@ export default function CartDrawer({
                   </p>
                   <div className="flex items-center gap-2 mt-2">
                     <button
-                      onClick={() =>
-                        updateQuantity(item.id, item.quantity - 1)
-                      }
+                      onClick={() => updateQuantity(item.id, item.quantity - 1)}
                       className="w-7 h-7 flex items-center justify-center rounded border border-gray-300 text-gray-500 hover:bg-gray-100"
                     >
                       <MinusOutlined className="text-xs" />
@@ -72,9 +72,7 @@ export default function CartDrawer({
                       {item.quantity}
                     </span>
                     <button
-                      onClick={() =>
-                        updateQuantity(item.id, item.quantity + 1)
-                      }
+                      onClick={() => updateQuantity(item.id, item.quantity + 1)}
                       className="w-7 h-7 flex items-center justify-center rounded border border-gray-300 text-gray-500 hover:bg-gray-100"
                     >
                       <PlusOutlined className="text-xs" />
