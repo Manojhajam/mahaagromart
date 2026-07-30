@@ -27,12 +27,12 @@ export default function CartDrawer({
         }`}
       >
         <div className="flex items-center justify-between px-5 py-4 border-b">
-          <h2 className="text-lg font-bold text-gray-900">
+          <h2 className="text-lg font-bold text-text-dark">
             Cart ({totalItems})
           </h2>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 text-xl"
+            className="text-gray-400 hover:text-text-body text-xl"
           >
             <CloseOutlined />
           </button>
@@ -55,10 +55,10 @@ export default function CartDrawer({
                   className="w-20 h-20 object-cover rounded-lg"
                 />
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-sm font-medium text-gray-900 truncate">
+                  <h3 className="text-sm font-medium text-text-dark truncate">
                     {item.title}
                   </h3>
-                  <p className="text-green-600 font-bold text-sm mt-1">
+                  <p className="text-primary-light font-bold text-sm mt-1">
                     {item.price}
                   </p>
                   <div className="flex items-center gap-2 mt-2">
@@ -81,7 +81,7 @@ export default function CartDrawer({
                 </div>
                 <button
                   onClick={() => removeFromCart(item.id)}
-                  className="text-gray-400 hover:text-red-500 self-start"
+                  className="text-gray-400 hover:text-danger self-start"
                 >
                   <CloseOutlined />
                 </button>
@@ -94,9 +94,9 @@ export default function CartDrawer({
           <div className="border-t px-5 py-4 space-y-3">
             <div className="flex items-center justify-between text-sm">
               <span className="text-gray-500">Subtotal</span>
-              <span className="font-bold text-gray-900">{totalPrice}</span>
+              <span className="font-bold text-text-dark">{totalPrice}</span>
             </div>
-            <button className="w-full bg-green-700 hover:bg-green-800 text-white font-medium py-3 rounded-xl transition-colors">
+            <button className="w-full bg-primary hover:bg-green-800 text-white font-medium py-3 rounded-xl transition-colors">
               Checkout
             </button>
           </div>

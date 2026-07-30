@@ -71,7 +71,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <div className="bg-green-900">
+      <div className="bg-primary-dark">
         <div className="container flex justify-between items-center py-3">
           <div>
             <EnvironmentFilled style={{ fontSize: 16, color: "white" }} />
@@ -130,7 +130,7 @@ const Navbar = () => {
                   key={cat.name}
                   type="button"
                   onClick={() => handleCategorySelect(cat.name)}
-                  className="flex items-center gap-3 w-full px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-green-700 transition-colors"
+                  className="flex items-center gap-3 w-full px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors"
                 >
                   <span className="text-lg">{cat.icon}</span>
                   <span>{cat.name}</span>
@@ -153,7 +153,7 @@ const Navbar = () => {
           <button
             type="button"
             onClick={()=>handleSearch()}
-            className="flex items-center gap-2 bg-yellow-400 px-6 py-3 text-sm font-bold text-black hover:bg-yellow-500"
+            className="flex items-center gap-2 bg-accent-light px-6 py-3 text-sm font-bold text-black hover:bg-accent"
           >
             SEARCH
             <SearchOutlined />
@@ -176,7 +176,7 @@ const Navbar = () => {
           >
             <ShoppingCartOutlined />
             {totalItems > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+              <span className="absolute -top-2 -right-2 bg-danger text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
                 {totalItems > 9 ? "9+" : totalItems}
               </span>
             )}
@@ -186,7 +186,7 @@ const Navbar = () => {
       <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
 
       <nav className="w-full">
-        <div className="container flex items-center justify-between h-16 border-2 border-gray-400 rounded-md mt-2 bg-gray-100">
+        <div className="container flex items-center justify-between h-16 border border-gray-400 rounded-md mt-2 bg-gray-100">
           <ul className="hidden md:flex items-center gap-8 ml-4">
             {navItems.map((item) => (
               <li key={item.href}>
@@ -194,8 +194,8 @@ const Navbar = () => {
                   href={item.href}
                   className={`text-md font-bold transition-colors ${
                     pathname === item.href
-                      ? "text-yellow-500 border-b-2 border-yellow-500 pb-1"
-                      : "text-gray-800 hover:text-yellow-500"
+                      ? "text-accent border-b-2 border-accent pb-1"
+                      : "text-gray-800 hover:text-accent"
                   }`}
                 >
                   {item.label}
@@ -206,7 +206,7 @@ const Navbar = () => {
 
           <button
             type="button"
-            className="flex md:hidden items-center gap-2 ml-4 px-3 py-2 text-gray-800 hover:text-yellow-500 transition-colors"
+            className="flex md:hidden items-center gap-2 ml-4 px-3 py-2 text-gray-800 hover:text-accent transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <CloseOutlined style={{ fontSize: 20 }} /> : <MenuOutlined style={{ fontSize: 20 }} />}
@@ -223,8 +223,8 @@ const Navbar = () => {
                     onClick={() => setIsMobileMenuOpen(false)}
                     className={`block px-4 py-2 text-sm font-bold rounded-md transition-colors ${
                       pathname === item.href
-                        ? "text-yellow-500 bg-yellow-50"
-                        : "text-gray-800 hover:text-yellow-500 hover:bg-gray-100"
+                        ? "text-accent bg-accent/10"
+                        : "text-gray-800 hover:text-accent hover:bg-gray-100"
                     }`}
                   >
                     {item.label}

@@ -61,10 +61,10 @@ export default function ServicesPage() {
       {/* Services Grid */}
       <section className="container py-16">
         <div className="text-center mb-12">
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
+          <h2 className="text-2xl sm:text-3xl font-bold text-text-dark mb-4">
             What We Offer
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-text-body max-w-2xl mx-auto">
             Comprehensive agricultural services designed to support farmers, businesses, and partners across Maharashtra.
           </p>
         </div>
@@ -75,10 +75,10 @@ export default function ServicesPage() {
               className="bg-white rounded-xl p-6 shadow-sm border border-gray-200 hover:shadow-md hover:border-green-200 transition-all duration-300"
             >
               <span className="text-3xl mb-4 block">{s.icon}</span>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">
+              <h3 className="text-lg font-bold text-text-dark mb-2">
                 {s.title}
               </h3>
-              <p className="text-gray-600 text-sm leading-relaxed">
+              <p className="text-text-body text-sm leading-relaxed">
                 {s.desc}
               </p>
             </div>
@@ -87,7 +87,7 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-green-900 py-16">
+      <section className="bg-primary-dark py-16">
         <div className="container text-center text-white">
           <h2 className="text-2xl sm:text-3xl font-bold mb-4">
             Need Help Choosing a Service?
@@ -98,7 +98,7 @@ export default function ServicesPage() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href="tel:+918888842300"
-              className="bg-yellow-400 text-black font-bold px-8 py-3 rounded-full hover:bg-yellow-500 transition-colors"
+              className="bg-accent-light text-black font-bold px-8 py-3 rounded-full hover:bg-accent transition-colors"
             >
               Call +91 88888-42-300
             </a>

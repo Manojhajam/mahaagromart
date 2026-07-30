@@ -63,7 +63,7 @@ const plainProducts = [
 
 function CountdownBox({ value, label }: { value: string; label: string }) {
   return (
-    <div className="bg-red-500 text-white rounded-lg px-3.5 py-2 min-w-[64px] text-center shadow-sm">
+    <div className="bg-danger text-white rounded-lg px-3.5 py-2 min-w-[64px] text-center shadow-sm">
       <div className="text-lg font-bold leading-tight">{value}</div>
       <div className="text-[9px] tracking-wide uppercase opacity-90 leading-tight">
         {label}
@@ -87,18 +87,18 @@ function LabeledProductCard({
       >
         {emoji}
       </div>
-      <div className="bg-red-500 text-white text-[9px] font-semibold rounded-md w-5 h-16 flex items-center justify-center shrink-0">
+      <div className="bg-danger text-white text-[9px] font-semibold rounded-md w-5 h-16 flex items-center justify-center shrink-0">
         <span className="[writing-mode:vertical-rl] rotate-180 tracking-wide whitespace-nowrap">
           {label}
         </span>
       </div>
       <div className="flex-1 min-w-0 pr-5">
-        <h3 className="font-semibold text-sm text-gray-900 truncate">
+        <h3 className="font-semibold text-sm text-text-dark truncate">
           {title}
         </h3>
         <div className="flex items-center gap-2 mt-1">
           <span className="text-gray-400 line-through text-xs">{oldPrice}</span>
-          <span className="text-green-600 font-semibold text-sm">{price}</span>
+          <span className="text-primary-light font-semibold text-sm">{price}</span>
         </div>
         <div className="flex items-center gap-1 mt-1 text-gray-400 text-xs">
           <Star size={12} className="fill-gray-300 text-gray-300" />
@@ -107,7 +107,7 @@ function LabeledProductCard({
       </div>
       <Heart
         size={16}
-        className="absolute top-3 right-3 text-red-400 fill-red-400"
+        className="absolute top-3 right-3 text-heart fill-heart"
       />
     </div>
   );
@@ -128,12 +128,12 @@ function PlainProductCard({
         {emoji}
       </div>
       <div className="flex-1 min-w-0 pr-5">
-        <h3 className="font-semibold text-sm text-gray-900 truncate">
+        <h3 className="font-semibold text-sm text-text-dark truncate">
           {title}
         </h3>
         <div className="flex items-center gap-2 mt-1">
           <span className="text-gray-400 line-through text-xs">{oldPrice}</span>
-          <span className="text-green-600 font-semibold text-sm">{price}</span>
+          <span className="text-primary-light font-semibold text-sm">{price}</span>
         </div>
         <div className="flex items-center gap-1 mt-1 text-gray-400 text-xs">
           <Star size={12} className="fill-gray-300 text-gray-300" />
@@ -142,7 +142,7 @@ function PlainProductCard({
       </div>
       <Heart
         size={16}
-        className="absolute top-3 right-3 text-red-400 fill-red-400"
+        className="absolute top-3 right-3 text-heart fill-heart"
       />
     </div>
   );
@@ -150,10 +150,10 @@ function PlainProductCard({
 
 export default function DealOfTheWeek() {
   return (
-    <div className="container rounded-xl border-4 border-red-500 overflow-hidden bg-white mb-10">
+    <div className="container rounded-xl border-4 border-danger overflow-hidden bg-white mb-10">
       {/* Header */}
       <div className="bg-[#FBF6EA] px-4 py-5 flex items-center justify-between flex-wrap gap-4">
-        <h2 className="text-2xl font-extrabold text-gray-900">
+        <h2 className="text-2xl font-extrabold text-text-dark">
           Deal of the Week
         </h2>
         <div className="flex gap-2">
@@ -176,10 +176,10 @@ export default function DealOfTheWeek() {
         {/* Middle: featured product */}
         <div className="col-span-12 md:col-span-12 xl:col-span-3 bg-white rounded-2xl shadow-sm p-5 flex flex-col relative min-h-[200px] sm:min-h-[280px] md:min-h-[360px]">
           <div className="flex items-start justify-between">
-            <span className="bg-gray-100 text-gray-600 text-xs font-medium px-3 py-1 rounded-md">
+            <span className="bg-gray-100 text-text-body text-xs font-medium px-3 py-1 rounded-md">
               Food
             </span>
-            <Heart size={20} className="text-red-400 fill-red-400" />
+            <Heart size={20} className="text-heart fill-heart" />
           </div>
 
           <div className="flex-1 flex items-center gap-3 my-4">
@@ -187,17 +187,17 @@ export default function DealOfTheWeek() {
               {/* Replace with: <img src="/images/hero.webp" className="w-full h-full object-contain" /> */}
               🧆
             </div>
-            <div className="bg-red-500 text-white text-[10px] font-semibold rounded-lg w-7 h-40 flex items-center justify-center">
+            <div className="bg-danger text-white text-[10px] font-semibold rounded-lg w-7 h-40 flex items-center justify-center">
               <span className="[writing-mode:vertical-rl] rotate-180 tracking-wide whitespace-nowrap">
                 SHAHI GARAM MASAL
               </span>
             </div>
           </div>
 
-          <h3 className="text-lg font-bold text-gray-900">Shahi Gram Masala</h3>
+          <h3 className="text-lg font-bold text-text-dark">Shahi Gram Masala</h3>
           <div className="flex items-center gap-2 mt-1">
-            <span className="text-green-600 font-bold text-lg">₹124.00</span>
-            <span className="bg-red-50 text-red-500 text-xs font-medium px-2 py-0.5 rounded">
+            <span className="text-primary-light font-bold text-lg">₹124.00</span>
+            <span className="bg-red-50 text-danger text-xs font-medium px-2 py-0.5 rounded">
               1% OFF
             </span>
           </div>

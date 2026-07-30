@@ -45,7 +45,7 @@ function FilterSidebar({
     <div className="space-y-8">
       {/* Category Filter */}
       <div>
-        <h3 className="font-bold text-gray-900 mb-3 text-lg">Category</h3>
+        <h3 className="font-bold text-text-dark mb-3 text-lg">Category</h3>
         <div className="space-y-1 max-h-64 overflow-y-auto">
           {categories.map((cat) => (
             <button
@@ -54,8 +54,8 @@ function FilterSidebar({
               onClick={() => setSelectedCat(cat)}
               className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
                 selectedCat === cat
-                  ? "bg-green-700 text-white font-medium"
-                  : "text-gray-600 hover:bg-green-50"
+                  ? "bg-primary text-white font-medium"
+                  : "text-text-body hover:bg-primary-bg"
               }`}
             >
               {cat}
@@ -66,22 +66,22 @@ function FilterSidebar({
 
       {/* Price Filter */}
       <div>
-        <h3 className="font-bold text-gray-900 mb-3 text-lg">Price</h3>
+        <h3 className="font-bold text-text-dark mb-3 text-lg">Price</h3>
         <div className="space-y-2">
-          <label className="flex items-center gap-2 cursor-pointer text-sm text-gray-600 hover:text-gray-900">
+          <label className="flex items-center gap-2 cursor-pointer text-sm text-text-body hover:text-text-dark">
             <input
               type="radio"
               name="price"
               checked={priceRange === null}
               onChange={() => setPriceRange(null)}
-              className="accent-green-700 w-4 h-4"
+              className="accent-primary w-4 h-4"
             />
             All Prices
           </label>
           {priceRanges.map((r) => (
             <label
               key={r.label}
-              className="flex items-center gap-2 cursor-pointer text-sm text-gray-600 hover:text-gray-900"
+              className="flex items-center gap-2 cursor-pointer text-sm text-text-body hover:text-text-dark"
             >
               <input
                 type="radio"
@@ -92,7 +92,7 @@ function FilterSidebar({
                   priceRange.max === r.max
                 }
                 onChange={() => setPriceRange({ min: r.min, max: r.max })}
-                className="accent-green-700 w-4 h-4"
+                className="accent-primary w-4 h-4"
               />
               {r.label}
             </label>
@@ -102,19 +102,19 @@ function FilterSidebar({
 
       {/* Rating Filter */}
       <div>
-        <h3 className="font-bold text-gray-900 mb-3 text-lg">Ratings</h3>
+        <h3 className="font-bold text-text-dark mb-3 text-lg">Ratings</h3>
         <div className="space-y-2">
           {ratingOptions.map((r) => (
             <label
               key={r.value}
-              className="flex items-center gap-2 cursor-pointer text-sm text-gray-600 hover:text-gray-900"
+              className="flex items-center gap-2 cursor-pointer text-sm text-text-body hover:text-text-dark"
             >
               <input
                 type="radio"
                 name="rating"
                 checked={minRating === r.value}
                 onChange={() => setMinRating(r.value)}
-                className="accent-green-700 w-4 h-4"
+                className="accent-primary w-4 h-4"
               />
               {r.label}
             </label>
@@ -125,7 +125,7 @@ function FilterSidebar({
       {closeMobile && (
         <button
           onClick={closeMobile}
-          className="w-full bg-green-700 text-white py-2 rounded-lg font-medium sm:hidden"
+          className="w-full bg-primary text-white py-2 rounded-lg font-medium sm:hidden"
         >
           Apply Filters
         </button>
@@ -191,11 +191,11 @@ function CategoryPageContent() {
           <aside className="hidden lg:block w-64 shrink-0">
             <div className="sticky top-4">
               <div className="flex items-center justify-between mb-4">
-                <h2 className="font-bold text-gray-900 text-xl">Filters</h2>
+                <h2 className="font-bold text-text-dark text-xl">Filters</h2>
                 {hasActiveFilters && (
                   <button
                     onClick={clearFilters}
-                    className="text-sm text-green-700 hover:underline"
+                    className="text-sm text-primary hover:underline"
                   >
                     Clear all
                   </button>
@@ -234,7 +234,7 @@ function CategoryPageContent() {
               />
               <div className="absolute left-0 top-0 bottom-0 w-80 bg-white p-6 overflow-y-auto shadow-2xl">
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="font-bold text-gray-900 text-xl">Filters</h2>
+                  <h2 className="font-bold text-text-dark text-xl">Filters</h2>
                   <button
                     onClick={() => setMobileFilterOpen(false)}
                     className="text-gray-500 text-2xl leading-none"
@@ -265,7 +265,7 @@ function CategoryPageContent() {
               {hasActiveFilters && (
                 <button
                   onClick={clearFilters}
-                  className="text-sm text-green-700 hover:underline"
+                  className="text-sm text-primary hover:underline"
                 >
                   Clear all filters
                 </button>
@@ -276,19 +276,19 @@ function CategoryPageContent() {
             {hasActiveFilters && (
               <div className="flex flex-wrap gap-2 mb-4">
                     {priceRange && (
-                  <span className="inline-flex items-center gap-1 bg-green-50 text-green-700 text-xs font-medium px-2.5 py-1 rounded-full">
+                  <span className="inline-flex items-center gap-1 bg-primary-bg text-primary text-xs font-medium px-2.5 py-1 rounded-full">
                     {priceRange.max === Infinity
                       ? `₹${priceRange.min}+`
                       : `₹${priceRange.min} - ₹${priceRange.max}`}
-                    <button onClick={() => setPriceRange(null)} className="ml-1 hover:text-green-900">
+                    <button onClick={() => setPriceRange(null)} className="ml-1 hover:text-primary-dark">
                       &times;
                     </button>
                   </span>
                 )}
                 {minRating > 0 && (
-                  <span className="inline-flex items-center gap-1 bg-green-50 text-green-700 text-xs font-medium px-2.5 py-1 rounded-full">
+                  <span className="inline-flex items-center gap-1 bg-primary-bg text-primary text-xs font-medium px-2.5 py-1 rounded-full">
                     {minRating}★ & above
-                    <button onClick={() => setMinRating(0)} className="ml-1 hover:text-green-900">
+                    <button onClick={() => setMinRating(0)} className="ml-1 hover:text-primary-dark">
                       &times;
                     </button>
                   </span>
@@ -301,7 +301,7 @@ function CategoryPageContent() {
                 <p className="text-lg">No products match your filters</p>
                 <button
                   onClick={clearFilters}
-                  className="mt-4 text-green-700 font-medium hover:underline"
+                  className="mt-4 text-primary font-medium hover:underline"
                 >
                   Clear all filters
                 </button>

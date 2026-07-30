@@ -50,22 +50,22 @@ export default function ProductDetailClient({
     <div>
       <section className="container py-8">
         {/* <nav className="text-sm text-gray-400 mb-6">
-          <Link href="/" className="hover:text-green-700">
+          <Link href="/" className="hover:text-primary">
             Home
           </Link>
           <span className="mx-2">/</span>
-          <Link href="/category" className="hover:text-green-700">
+          <Link href="/category" className="hover:text-primary">
             Products
           </Link>
           <span className="mx-2">/</span>
           <Link
             href={`/category?cat=${encodeURIComponent(product.category)}`}
-            className="hover:text-green-700"
+            className="hover:text-primary"
           >
             {product.category}
           </Link>
           <span className="mx-2">/</span>
-          <span className="text-gray-600">{product.title}</span>
+          <span className="text-text-body">{product.title}</span>
         </nav> */}
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
@@ -79,16 +79,16 @@ export default function ProductDetailClient({
           </div>
 
           <div className="flex flex-col justify-center">
-            <span className="bg-green-100 text-green-700 text-xs font-medium px-3 py-1 rounded-full w-fit mb-3">
+            <span className="bg-green-100 text-primary text-xs font-medium px-3 py-1 rounded-full w-fit mb-3">
               {product.category}
             </span>
-            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
+            <h1 className="text-2xl sm:text-3xl font-bold text-text-dark mb-4">
               {product.title}
             </h1>
-            <p className="text-gray-600 mb-6">{description}</p>
+            <p className="text-text-body mb-6">{description}</p>
 
             <div className="flex items-center gap-3 mb-4">
-              <span className="text-green-600 font-bold text-2xl">
+              <span className="text-primary-light font-bold text-2xl">
                 {product.price}
               </span>
               {product.oldPrice && (
@@ -97,7 +97,7 @@ export default function ProductDetailClient({
                 </span>
               )}
               {product.discount && (
-                <span className="bg-red-50 text-red-500 text-xs font-medium px-2 py-1 rounded">
+                <span className="bg-red-50 text-danger text-xs font-medium px-2 py-1 rounded">
                   {product.discount}
                 </span>
               )}
@@ -111,7 +111,7 @@ export default function ProductDetailClient({
                       key={star}
                       className={`w-5 h-5 ${
                         star <= Math.round(rating)
-                          ? "text-yellow-400"
+                          ? "text-accent-light"
                           : "text-gray-200"
                       }`}
                       fill="currentColor"
@@ -121,7 +121,7 @@ export default function ProductDetailClient({
                     </svg>
                   ))}
                 </div>
-                <span className="text-yellow-500 font-medium">{rating}</span>
+                <span className="text-accent font-medium">{rating}</span>
                 <span className="text-gray-400">({reviews} Reviews)</span>
               </div>
             )}
@@ -129,12 +129,12 @@ export default function ProductDetailClient({
             <div className="flex items-center gap-2 mb-6">
               <span
                 className={`w-2.5 h-2.5 rounded-full ${
-                  isInStock ? "bg-green-500" : "bg-red-500"
+                  isInStock ? "bg-green-500" : "bg-danger"
                 }`}
               />
               <span
                 className={`text-sm font-medium ${
-                  isInStock ? "text-green-600" : "text-red-500"
+                  isInStock ? "text-primary-light" : "text-danger"
                 }`}
               >
                 {isInStock ? "In Stock" : "Out of Stock"}
@@ -146,13 +146,13 @@ export default function ProductDetailClient({
                 onClick={handleAddToCart}
                 className={`flex-1 font-medium py-3 px-6 rounded-xl transition-colors ${
                   added
-                    ? "bg-green-600 text-white"
-                    : "bg-green-700 hover:bg-green-800 text-white"
+                    ? "bg-primary-light text-white"
+                    : "bg-primary hover:bg-green-800 text-white"
                 }`}
               >
                 {added ? "Added ✓" : "Add to Cart"}
               </button>
-              <button className="flex-1 border border-green-700 text-green-700 hover:bg-green-50 font-medium py-3 px-6 rounded-xl transition-colors">
+              <button className="flex-1 border border-primary text-primary hover:bg-primary-bg font-medium py-3 px-6 rounded-xl transition-colors">
                 Buy Now
               </button>
             </div>
@@ -162,7 +162,7 @@ export default function ProductDetailClient({
 
       {related.length > 0 && (
         <section className="container pb-10">
-          <h2 className="text-xl font-bold text-gray-900 mb-6">
+          <h2 className="text-xl font-bold text-text-dark mb-6">
             Related Products
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">

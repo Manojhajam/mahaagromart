@@ -54,16 +54,16 @@ export default function AboutPage() {
       <section className="container py-16">
         <div className="grid md:grid-cols-2 gap-10 items-center">
           <div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">
+            <h2 className="text-2xl sm:text-3xl font-bold text-text-dark mb-6">
               Our Story
             </h2>
-            <p className="text-gray-600 leading-relaxed mb-4">
+            <p className="text-text-body leading-relaxed mb-4">
               Maha Agro Mart is proud to actively support and collaborate with Self Help Groups (SHGs), Farmer Producer Organizations (FPOs), and individual farmers across Maharashtra. We recognize the crucial role these groups play in the agricultural landscape and strive to be a valuable partner in their success.
             </p>
-            <p className="text-gray-600 leading-relaxed mb-4">
+            <p className="text-text-body leading-relaxed mb-4">
               Our commitment to empowering these groups and individual farmers extends beyond just providing access to high-quality agricultural products. We offer dedicated support, resources, and knowledge-sharing initiatives to help them optimize their farming practices, improve yields, and enhance overall agricultural productivity.
             </p>
-            <p className="text-gray-600 leading-relaxed">
+            <p className="text-text-body leading-relaxed">
               By fostering collaborations with SHGs and FPOs, we aim to create a network of mutual support, enabling these entities to leverage our platform for their procurement needs and benefit from our expertise in sustainable agricultural practices.
             </p>
           </div>
@@ -87,7 +87,7 @@ export default function AboutPage() {
       </section>
 
       {/* Vision & Mission */}
-      <section className="bg-green-900 py-16">
+      <section className="bg-primary-dark py-16">
         <div className="container grid md:grid-cols-2 gap-10">
           <div className="bg-white/10 backdrop-blur rounded-xl p-8 text-white">
             <h3 className="text-2xl font-bold mb-4">Vision</h3>
@@ -106,19 +106,19 @@ export default function AboutPage() {
 
       {/* Objectives */}
       <section className="container py-16">
-        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-10 text-center">
+        <h2 className="text-2xl sm:text-3xl font-bold text-text-dark mb-10 text-center">
           Our Objectives
         </h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {objectives.map((obj) => (
             <div
               key={obj.title}
-              className="bg-green-50 rounded-xl p-6 border border-green-100"
+              className="bg-primary-bg rounded-xl p-6 border border-green-100"
             >
               <h3 className="text-lg font-bold text-green-800 mb-2">
                 {obj.title}
               </h3>
-              <p className="text-gray-600 text-sm leading-relaxed">
+              <p className="text-text-body text-sm leading-relaxed">
                 {obj.desc}
               </p>
             </div>
@@ -129,7 +129,7 @@ export default function AboutPage() {
       {/* Values */}
       <section className="bg-gray-50 py-16">
         <div className="container">
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-10 text-center">
+          <h2 className="text-2xl sm:text-3xl font-bold text-text-dark mb-10 text-center">
             Our Values
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -138,10 +138,10 @@ export default function AboutPage() {
                 key={v.title}
                 className="bg-white rounded-xl p-6 shadow-sm border border-gray-200"
               >
-                <h3 className="text-lg font-bold text-green-700 mb-2">
+                <h3 className="text-lg font-bold text-primary mb-2">
                   {v.title}
                 </h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
+                <p className="text-text-body text-sm leading-relaxed">
                   {v.desc}
                 </p>
               </div>
@@ -152,23 +152,23 @@ export default function AboutPage() {
 
       {/* Contact Info */}
       <section className="container py-16 text-center">
-        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">
+        <h2 className="text-2xl sm:text-3xl font-bold text-text-dark mb-6">
           Get In Touch
         </h2>
-        <p className="text-gray-600 mb-8">
+        <p className="text-text-body mb-8">
           Have questions or want to collaborate? Reach out to us.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-gray-700">
           <a
             href="tel:+918888842300"
-            className="flex items-center gap-2 text-green-700 hover:text-green-600 font-medium"
+            className="flex items-center gap-2 text-primary hover:text-primary-light font-medium"
           >
             <PhoneOutlined />
             +91 88888-42-300
           </a>
           <a
             href="mailto:info@mahaagromart.com"
-            className="flex items-center gap-2 text-green-700 hover:text-green-600 font-medium"
+            className="flex items-center gap-2 text-primary hover:text-primary-light font-medium"
           >
             <MailOutlined />
             info@mahaagromart.com

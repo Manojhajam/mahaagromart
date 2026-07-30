@@ -40,13 +40,13 @@ export default function ProductCard({
     >
       {category && (
         <div className="flex items-start justify-between">
-          <span className="bg-gray-200 text-gray-600 text-[10px] sm:text-xs font-medium px-2 sm:px-3 py-1 rounded-md">
+          <span className="bg-gray-200 text-text-body text-[10px] sm:text-xs font-medium px-2 sm:px-3 py-1 rounded-md">
             {category}
           </span>
-          <Heart size={16} className="text-red-400 fill-red-400 sm:hidden" />
+          <Heart size={16} className="text-heart fill-heart sm:hidden" />
           <Heart
             size={20}
-            className="text-red-400 fill-red-400 hidden sm:block"
+            className="text-heart fill-heart hidden sm:block"
           />
         </div>
       )}
@@ -67,13 +67,13 @@ export default function ProductCard({
         </div>
       </div>
 
-      <h3 className="text-base sm:text-lg font-bold text-gray-900">{title}</h3>
+      <h3 className="text-base sm:text-lg font-bold text-text-dark">{title}</h3>
       <div className="flex items-center gap-2 mt-1">
-        <span className="text-green-600 font-bold text-base sm:text-lg">
+        <span className="text-primary-light font-bold text-base sm:text-lg">
           {price}
         </span>
         {discount && (
-          <span className="bg-red-50 text-red-500 text-[10px] sm:text-xs font-medium px-1.5 sm:px-2 py-0.5 rounded">
+          <span className="bg-red-50 text-danger text-[10px] sm:text-xs font-medium px-1.5 sm:px-2 py-0.5 rounded">
             {discount}
           </span>
         )}
@@ -83,13 +83,13 @@ export default function ProductCard({
           <>
             <Star
               size={12}
-              className="fill-yellow-400 text-yellow-400 sm:hidden"
+              className="fill-accent-light text-accent-light sm:hidden"
             />
             <Star
               size={14}
-              className="fill-yellow-400 text-yellow-400 hidden sm:block"
+              className="fill-accent-light text-accent-light hidden sm:block"
             />
-            <span className="text-yellow-500 font-medium">{rating}</span>
+            <span className="text-accent font-medium">{rating}</span>
             <span>({reviews ?? 0} Reviews)</span>
           </>
         ) : (

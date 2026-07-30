@@ -9,7 +9,7 @@ export default function Banner() {
       {[1, 2, 3].map((i) => (
         <div key={i} className="h-64 sm:h-80 lg:h-[28.5rem] w-full rounded-2xl overflow-hidden relative group">
           <div
-            className="absolute inset-0 bg-contain bg-center bg-green-700 bg-no-repeat transition-transform duration-300 group-hover:scale-110"
+            className="absolute inset-0 bg-contain bg-center bg-primary bg-no-repeat transition-transform duration-300 group-hover:scale-110"
             style={{
               backgroundImage: "url('/images/hero.webp')",
             }}

@@ -19,7 +19,7 @@ function SearchPageContent() {
 
   return (
     <section className="container py-10">
-      <h2 className="text-2xl font-bold text-gray-900 mb-2">
+      <h2 className="text-2xl font-bold text-text-dark mb-2">
         Results for &ldquo;{query}&rdquo;
       </h2>
       <p className="text-gray-500 mb-6">{filtered.length} result{filtered.length !== 1 ? "s" : ""} found</p>
