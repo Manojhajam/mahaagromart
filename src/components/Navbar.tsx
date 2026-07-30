@@ -23,6 +23,8 @@ const navItems = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
   { label: "Services", href: "/services" },
+  { label: "B2B", href: "/b2b" },
+  {label: "Contact Us", href: "/contact" },
 ];
 
 const categoryList = [
