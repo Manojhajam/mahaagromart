@@ -185,7 +185,7 @@ const Navbar = () => {
       </div>
       <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
 
-      <nav className="w-full">
+      <nav className="w-full max-md:px-4">
         <div className="container flex items-center justify-between h-16 border border-gray-400 rounded-md mt-2 bg-gray-100">
           <ul className="hidden md:flex items-center gap-8 ml-4">
             {navItems.map((item) => (
