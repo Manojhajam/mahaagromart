@@ -18,7 +18,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4 py-10">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
       <div className="w-full bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden grid grid-cols-1 md:grid-cols-2">
         {/* Left illustration panel */}
         <div className="hidden md:flex items-center justify-center bg-gradient-to-br from-emerald-50 to-teal-50 p-8">
