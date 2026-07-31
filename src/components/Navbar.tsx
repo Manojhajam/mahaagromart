@@ -249,7 +249,7 @@ setHoveredCategory text-sm text-gray-700 hover:bg-gray-50 hover:text-primary tra
                         }}
                         onClick={() => {
                           // if (!subs.length) {
-                            handleCategorySelect(cat.name);
+                          handleCategorySelect(cat.name);
                           // }
                         }}
                         className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary cursor-pointer transition-colors"
