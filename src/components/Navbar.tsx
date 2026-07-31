@@ -383,11 +383,19 @@ setHoveredCategory text-sm text-gray-700 hover:bg-gray-50 hover:text-primary tra
 
   <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-44 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
     <div className="p-3 space-y-2">
-      <button className="w-full rounded-md bg-primary text-white py-2">
+      <button
+        type="button"
+        onClick={() => router.push("/login")}
+        className="w-full rounded-md bg-primary text-white py-2"
+      >
         Login
       </button>
 
-      <button className="w-full rounded-md border border-primary text-primary py-2 hover:bg-primary hover:text-white transition">
+      <button
+        type="button"
+        onClick={() => router.push("/register")}
+        className="w-full rounded-md border border-primary text-primary py-2 hover:bg-primary hover:text-white transition"
+      >
         Register
       </button>
     </div>
