@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useCart } from "@/context/CartContext";
 import { CloseOutlined, MinusOutlined, PlusOutlined } from "@ant-design/icons";
 
@@ -12,6 +13,12 @@ export default function CartDrawer({
 }) {
   const { items, removeFromCart, updateQuantity, totalItems, totalPrice } =
     useCart();
+  const router = useRouter();
+
+  const handleCheckout = () => {
+    onClose();
+    router.push("/checkout");
+  };
 
   return (
     <>
@@ -96,7 +103,10 @@ export default function CartDrawer({
               <span className="text-gray-500">Subtotal</span>
               <span className="font-bold text-text-dark">{totalPrice}</span>
             </div>
-            <button className="w-full bg-primary hover:bg-green-800 text-white font-medium py-3 rounded-xl transition-colors">
+            <button
+              onClick={handleCheckout}
+              className="w-full bg-primary hover:bg-green-800 text-white font-medium py-3 rounded-xl transition-colors"
+            >
               Checkout
             </button>
           </div>
