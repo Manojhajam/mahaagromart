@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useCart } from "@/context/CartContext";
 import ProductCard from "@/components/home/ProductCard";
 
@@ -14,6 +14,8 @@ interface ProductData {
   category: string;
   label: string;
   discount: string;
+  rating?: number;
+  reviews?: number;
 }
 
 export default function ProductDetailClient({
@@ -32,6 +34,7 @@ export default function ProductDetailClient({
   description: string;
 }) {
   const { addToCart } = useCart();
+  const router = useRouter();
   const [added, setAdded] = useState(false);
 
   const handleAddToCart = () => {
@@ -45,6 +48,17 @@ export default function ProductDetailClient({
     setAdded(true);
     setTimeout(() => setAdded(false), 1500);
   };
+
+  const handleBuyNow = () => {
+    addToCart({
+      id: product.id,
+      title: product.title,
+      price: product.price,
+      image: product.image,
+      quantity: 1,
+    });
+    router.push("/checkout");
+  }
 
   return (
     <div>
@@ -152,7 +166,10 @@ export default function ProductDetailClient({
               >
                 {added ? "Added ✓" : "Add to Cart"}
               </button>
-              <button className="flex-1 border border-primary text-primary hover:bg-primary-bg font-medium py-3 px-6 rounded-xl transition-colors">
+              <button
+                onClick={handleBuyNow}
+                className="flex-1 border border-primary text-primary hover:bg-primary-bg font-medium py-3 px-6 rounded-xl transition-colors"
+              >
                 Buy Now
               </button>
             </div>
@@ -177,8 +194,8 @@ export default function ProductDetailClient({
                   category={p.category}
                   label={p.label}
                   discount={p.discount}
-                  rating={"rating" in p ? (p as any).rating : 0}
-                  reviews={"reviews" in p ? (p as any).reviews : 0}
+                  rating={p.rating ?? 0}
+                  reviews={p.reviews ?? 0}
                 />
               </div>
             ))}
